@@ -2,7 +2,7 @@
 
 <h3 class="text-muted">Portal Web | Despacho</h3>
 <ul class="nav nav-justified">
-	<li class="active"><a href="#">Inicio</a></li>
+	<li class="active"><a href="<c:url value="/" />">Inicio</a></li>
   	<li><a href="#">Usuarios</a></li>
   	<li><a href="#">Item A</a></li>
   	<li><a href="#">Item B</a></li>
