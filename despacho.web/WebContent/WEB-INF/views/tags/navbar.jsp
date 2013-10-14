@@ -7,5 +7,5 @@
   	<li><a href="#">Item A</a></li>
   	<li><a href="#">Item B</a></li>
   	<li><a href="#">Item C</a></li>
-  	<li><a href="configuracion.jsp">Configuración</a></li>
+  	<li><a href="<c:url value="/configuracion/" />">Configuración</a></li>
 </ul>

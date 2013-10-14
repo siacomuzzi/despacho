@@ -9,7 +9,6 @@
 
 	<context:component-scan base-package="despacho.web.controllers" />
 
-	<!-- Routes 
-	<mvc:view-controller path="/" view-name="home"/> -->
-
+	<!--Routes -->
+	<mvc:view-controller path="/" view-name="home" />
 </beans>

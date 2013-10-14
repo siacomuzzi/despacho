@@ -2,10 +2,10 @@
 <decorators defaultdir="/WEB-INF/decorators">
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
     <excludes>
-        <pattern>/about.jsp</pattern>
+        <!--<pattern>/about.jsp</pattern>-->
     </excludes>
 	
-	<decorator name="main-layout" page="main-layout.jsp">
+	<decorator name="default" page="main-layout.jsp">
         <pattern>/*</pattern>     
     </decorator>	
 </decorators>
