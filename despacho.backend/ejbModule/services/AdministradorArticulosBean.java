@@ -1,6 +1,9 @@
 package services;
 
-public class AdministradorArticulosBean {
+import javax.ejb.Stateless;
+
+@Stateless
+public class AdministradorArticulosBean implements AdministradorArticulos {
 	
 	public void guardarArticuloNuevo(Object articulo) {
 		// Se debe registrar dicho artículo junto con la información del Módulo Depósito.

@@ -1,6 +1,9 @@
 package services;
 
-public class AdministradorOrdenesDespachoBean {
+import javax.ejb.Stateless;
+
+@Stateless
+public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDespacho {
 	
 	public void guardarOrden(Object ordenDespacho) {
 		// - Las órdenes de Despacho deben ser registradas en el sistema como pendientes de Entrega.
