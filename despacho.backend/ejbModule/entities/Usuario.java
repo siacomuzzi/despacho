@@ -1,9 +1,12 @@
 package entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "USUARIO")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Usuario {
 	private String email;
 	private String nombre;
@@ -12,6 +15,7 @@ public class Usuario {
 	private Boolean activo;
 	
 	@Id
+	@XmlElement
 	public String getEmail() {
 		return email;
 	}
@@ -20,6 +24,7 @@ public class Usuario {
 		this.email = email;
 	}
 	
+	@XmlElement
 	public String getNombre() {
 		return nombre;
 	}
@@ -28,6 +33,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 	
+	@XmlElement
 	public String getApellido() {
 		return apellido;
 	}
@@ -36,6 +42,7 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 	
+	@XmlElement
 	public String getPassword() {
 		return password;
 	}
@@ -44,6 +51,8 @@ public class Usuario {
 		this.password = password;
 	}
 	
+	@XmlElement
+	@Column(name="activo", columnDefinition="bit")
 	public Boolean getActivo() {
 		return activo;
 	}
