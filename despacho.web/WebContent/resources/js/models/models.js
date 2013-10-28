@@ -1,7 +1,7 @@
 window.Usuario = Backbone.Model.extend({
 
     urlRoot: "api/usuarios",
-    id: "username",
+    idAttribute: "username",
 
     initialize: function () {
         this.validators = {};

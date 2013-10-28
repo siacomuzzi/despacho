@@ -106,3 +106,52 @@ a.plain:hover {
     padding-right: 0;
   }
 }
+
+.editing {
+	border-bottom: none;
+	padding: 0;
+}
+
+.editing .edit {
+	display: block !important;
+}
+
+.editing .view {
+	display: none;
+}
+
+.edit {
+	display: none !important;
+}
+
+.editing:last-child {
+	margin-bottom: -1px;
+}
+
+.load-modal {
+    display: none;
+    position: fixed;
+    top: 42px;
+    padding: 0 0 5px 15px;
+    z-index: 1000;
+    margin: 0 48%;
+    width: 80px;
+    font-weight: bold;
+    border-radius: 0 0 5px 5px;
+    background-color: #faa732;
+}
+
+textarea.logMsg {
+    background: transparent;
+    cursor: default;
+    border-style: none;
+}
+
+.btn-toolbar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.users tr {
+	height: 35px;
+}

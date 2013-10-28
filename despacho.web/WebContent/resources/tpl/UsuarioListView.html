@@ -1,0 +1,68 @@
+<div class="btn-toolbar clearfix">
+  <a id="openUserModal" class="btn btn-primary pull-right" href="#addUserModal" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Agregar Usuario</a>
+</div>
+
+<div class="well">
+  <div class="alert" style="display: none"></div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Activo</th>
+        <th style="width: 36px;"></th>
+      </tr>
+    </thead>
+    <tbody class="users"></tbody>
+  </table>
+</div>
+
+<div id="addUserModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  	<div class="modal-content">
+  		<div class="modal-header">
+  			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          	<h4 class="modal-title">Agregar Usuario</h4>
+  		</div>
+  		<div class="modal-body">
+		    <div class="alert" style="display: none"></div>
+		    <div class="control-group">
+		      <label class="control-label">Username</label>
+		      <div class="controls">
+		        <input id="username" type="text" required />
+		      </div>
+		    </div>
+		    <div class="control-group">
+		      <label class="control-label">Password</label>
+		      <div class="controls">
+		        <input id="password" type="password"></input>
+		      </div>
+		    </div>
+		    <div class="control-group">
+		        <label class="control-label">Nombre</label>
+		        <div class="controls">
+		          <input id="nombre" type="text" name="nombre" required />
+		        </div>
+		      </div>
+		      <div class="control-group">
+		        <label class="control-label">Apellido</label>
+		        <div class="controls">
+		          <input id="apellido" type="text" name="apellido" required />
+		        </div>
+		      </div>
+		      <div class="control-group">
+		        <label class="control-label">Activo</label>
+		        <div class="controls">
+		        	<input id="activo" type="checkbox" name="activo" />
+		        </div>
+		      </div>
+	  	</div>
+	  	<div class="modal-footer">
+		    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		    <button id="addUser" class="btn btn-primary">OK</button>
+	  	</div>
+  	</div>
+  </div>
+</div>

@@ -3,9 +3,7 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         ""                  	: "home",
         "usuarios"   			: "usuarios",
-        "usuarios/add"         	: "addUsuario",
-        "usuarios/:username"    : "usuarioDetails",
-        "configuracion"   		: "configuracion",
+        "configuracion"   		: "configuracion"
     },
 
     initialize: function () {
@@ -14,32 +12,13 @@ var AppRouter = Backbone.Router.extend({
     },
 
     usuarios: function(page) {
-    	if (!this.usuariosView) {
-            this.usuariosView = new UsuariosView();
-        }
-    	
-    	$("#content").html(this.usuariosView.el);
-    	this.headerView.selectMenuItem('usuarios-menu');
-    	
-        var usuarioList = new UsuarioCollection();
-        usuarioList.fetch({success: function() {
-        	$("#content .grid").html(new UsuarioListView({model: usuarioList}).el);
-        }});
-    },
-
-    usuarioDetails: function (username) {
-        var usuario = new Usuario({username: username});
-        usuario.fetch({success: function(){
-            $("#content").html(new UsuarioView({model: usuario}).el);
-        }});
+    	var usuarioList = new UsuarioCollection();
         
-        this.headerView.selectMenuItem();
-    },
+    	usuarioList.fetch({success: function(){
+            $('#content').html(new UsuarioListView({ model: usuarioList }).el);
+        }});
 
-    addUsuario: function() {
-        var usuario = new Usuario();
-        $('#content').html(new UsuarioView({model: usuario}).el);
-        this.headerView.selectMenuItem();
+        this.headerView.selectMenuItem('usuarios-menu');
     },
 
     configuracion: function () {
@@ -61,7 +40,16 @@ var AppRouter = Backbone.Router.extend({
     }
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'UsuariosView', 'UsuarioView', 'UsuarioListItemView', 'ConfiguracionView'], function() {
+$(document).on({
+    ajaxStart: function() {
+        $('.load-modal', this).css("display", "block");
+    },
+    ajaxStop: function() {
+        $('.load-modal', this).css("display", "none");
+    }
+});
+
+utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
