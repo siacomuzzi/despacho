@@ -1,4 +1,4 @@
-package entities;
+package despacho.backend.entities;
 
 import java.io.Serializable;
 import java.util.List;

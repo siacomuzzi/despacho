@@ -1,11 +1,11 @@
-package services;
+package despacho.backend.services;
 
 import java.util.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
-import entities.*;
+import despacho.backend.entities.*;
 
 @Stateless
 public class AdministradorUsuariosBean implements AdministradorUsuarios {

@@ -1,4 +1,4 @@
-package services;
+package despacho.backend.services;
 
 import javax.ejb.Local;
 

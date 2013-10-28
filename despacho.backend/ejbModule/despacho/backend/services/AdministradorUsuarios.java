@@ -1,12 +1,12 @@
-package services;
+package despacho.backend.services;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
-import entities.Usuario;
+import despacho.backend.entities.Usuario;
 
-@Local
+@Remote
 public interface AdministradorUsuarios {
 	public void crearUsuario(Usuario usuario);
 	
