@@ -1,0 +1,72 @@
+<div class="row">
+
+    <form class="form-horizontal span12">
+
+        <fieldset>
+
+            <legend>Usuario</legend>
+            <br/>
+
+            <div class="row">
+                <div class="span9">
+
+                    <div class="control-group">
+                        <label for="usuarioId" class="control-label">Username:</label>
+
+                        <div class="controls">
+                            <input id="usuarioId" name="username" type="text" value="<%= usuarioId === null ? '' : usuarioId %>" class="span1"
+                                   disabled/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="nombre" class="control-label">Nombre:</label>
+
+                        <div class="controls">
+                            <input type="text" id="nombre" name="nombre" value="<%= nombre %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="apellido" class="control-label">Apellido:</label>
+
+                        <div class="controls">
+                            <input type="text" id="apellido" name="apellido" value="<%= apellido %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="password" class="control-label">Password:</label>
+
+                        <div class="controls">
+                            <input type="password" id="password" name="password" value="<%= password %>"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- TODO: activo -->
+
+                </div>
+
+            </div>
+
+        </fieldset>
+
+        <div class="form-actions">
+            <a href="#" class="btn btn-primary save">Guardar</a>
+            <a href="#" class="btn delete">Borrar</a>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="row status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Guardado!</b> Usuario guardado exitosamente.
+        </div>
+    </div>
+</div>

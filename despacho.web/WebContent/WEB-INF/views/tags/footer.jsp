@@ -1,1 +1,0 @@
-<p class="pull-right">UADE &copy; 2013</p>

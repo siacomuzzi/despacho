@@ -58,6 +58,26 @@ body {
   border-radius: 0 0 5px 5px;
 }
 
+a.plain:link { 
+	color: #333; 
+	text-decoration: none;
+}
+
+a.plain:active { 
+	color: #333; 
+	text-decoration: none;
+}
+
+a.plain:visited { 
+	color: #333; 
+	text-decoration: none;
+}
+
+a.plain:hover { 
+	color: #333; 
+	text-decoration: none;
+}
+
 @media (min-width: 768px) {
   .nav-justified {
     max-height: 52px;

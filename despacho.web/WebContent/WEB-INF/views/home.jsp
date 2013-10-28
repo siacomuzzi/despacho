@@ -2,23 +2,50 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	    <title>Despacho</title>
+	
+	    <!-- Bootstrap core CSS -->
+	    <link href="<c:url value="/resources/css/bootstrap-theme.min.css" />" rel="stylesheet">
+	    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+	    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" />
+  	</head>
+
 	<body>
-  		<div class="row">
-  			<div class="col-lg-4">
-	          	<h2>Usuarios</h2>
-	          	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	          	<p><a class="btn btn-primary" href="#">Administrar &raquo;</a></p>
-	        </div>
-	        <div class="col-lg-4">
-	          	<h2>Heading</h2>
-	          	<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	          	<p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
-	       	</div>
-        	<div class="col-lg-4">
-	          	<h2>Heading</h2>
-	          	<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-	          	<p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
-	        </div>
-		</div>
+
+	    <div class="container">
+	    	
+		    <div class="header masthead"></div>
+		
+		    <!-- Content -->
+		   	<div id="content" class="span12>"></div>
+		
+		    <!-- Footer -->
+		    <div class="footer">
+		      	<p class="pull-right">UADE &copy; 2013</p>
+		    </div>
+		    
+	    </div> <!-- /container -->
+	
+	    <!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.0-min.js" />"></script>
+	    <script type="text/javascript" src="<c:url value="/resources/js/underscore-min.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/backbone-min.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+		
+		<script type="text/javascript" src="<c:url value="/resources/js/utils.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/models/models.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/header.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/usuarioList.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/usuarioDetails.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/usuarios.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/configuracion.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/home.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/main.js" />"></script>
   	</body>
 </html>
