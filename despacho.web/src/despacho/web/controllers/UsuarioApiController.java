@@ -5,6 +5,8 @@ import java.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import despacho.backend.entities.Usuario;
+
 @Controller
 @RequestMapping("api/usuarios")
 public class UsuarioApiController {
@@ -13,7 +15,18 @@ public class UsuarioApiController {
 	@ResponseBody
 	public List<Usuario> getUsuarios() {
 		// TODO
-		return new ArrayList<Usuario>();
+		Usuario u1 = new Usuario();
+		u1.setUsername("pedro");
+		u1.setActivo(true);
+		Usuario u2 = new Usuario();
+		u2.setUsername("santiago");
+		u2.setActivo(false);
+		
+		List<Usuario> resultado = new ArrayList<Usuario>();
+		resultado.add(u1);
+		resultado.add(u2);
+		
+		return resultado;
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
