@@ -7,6 +7,7 @@ public class Configuracion {
 	private static Map<String, String> configuracion;
 	
 	public Configuracion() {
+		// TODO: manipular toda la informacion de configuracion desde una pagina web
 		configuracion = new HashMap<String, String>();
 		
 		// Configuracion de la queue de Deposito "UNO"

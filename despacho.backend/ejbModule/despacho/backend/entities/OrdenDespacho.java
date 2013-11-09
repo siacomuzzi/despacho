@@ -12,6 +12,9 @@ public class OrdenDespacho {
 	private String estado;
 	private List<ArticuloOrdenDespacho> articulos;
 	
+	public OrdenDespacho() {
+	}
+	
 	public OrdenDespacho(String codigo) {
 		this.codigo = codigo;
 		this.estado = "";
@@ -35,7 +38,7 @@ public class OrdenDespacho {
 		this.estado = estado;
 	}
 	
-	@OneToMany (mappedBy="ORDEN_DESPACHO", fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+	@OneToMany
 	public List<ArticuloOrdenDespacho> getArticulos() {
 		return articulos;
 	}

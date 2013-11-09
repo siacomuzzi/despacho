@@ -11,6 +11,10 @@ public class Usuario {
 	private String password;
 	private Boolean activo;
 	
+	public Usuario() {
+		
+	}
+	
 	@Id
 	public String getUsername() {
 		return username;

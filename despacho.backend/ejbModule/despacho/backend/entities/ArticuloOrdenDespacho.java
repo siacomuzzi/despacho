@@ -2,9 +2,7 @@ package despacho.backend.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ARTICULO_ORDEN_DESPACHO")
@@ -14,6 +12,9 @@ public class ArticuloOrdenDespacho implements Serializable {
 
 	private String codigo;
 	private Deposito deposito;
+	
+	public ArticuloOrdenDespacho() {
+	}
 	
 	public ArticuloOrdenDespacho(String codigo) {
 		this.codigo = codigo;
@@ -29,6 +30,7 @@ public class ArticuloOrdenDespacho implements Serializable {
 		this.codigo = codigo;
 	}
 
+	@ManyToOne
 	public Deposito getDeposito() {
 		return deposito;
 	}
