@@ -23,7 +23,7 @@ public class Main {
 			// ASSERTS:
 			//	- Cada articulo de la orden se envio a la queue del DEPOSITO correspondiente
 			//	- La orden se guardo en la DB con el estado "pendientes de entrega"
-			//	- [TODO] Se debe registrar la solicitud por Deposito
+			//	- Se debe registrar la solicitud por Deposito
 			
 			System.out.println("LISTO!");
 		} catch (Exception e) {
