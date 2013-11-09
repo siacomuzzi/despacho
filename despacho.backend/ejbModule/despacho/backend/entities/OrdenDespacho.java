@@ -38,7 +38,7 @@ public class OrdenDespacho {
 		this.estado = estado;
 	}
 	
-	@OneToMany
+	@OneToMany(mappedBy = "ordenDespacho", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<ArticuloOrdenDespacho> getArticulos() {
 		return articulos;
 	}
