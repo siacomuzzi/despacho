@@ -14,7 +14,11 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 	@PersistenceContext(unitName="portalweb.despacho")
 	private EntityManager em;
 
-	public void agregar(OrdenDespacho ordenDespacho) {	
+	public void agregar(OrdenDespacho ordenDespacho) {
+		for (ArticuloOrdenDespacho articulo : ordenDespacho.getArticulos()) {
+			articulo.setOrdenDespacho(ordenDespacho.getCodigo());
+		}
+		
 		this.em.persist(ordenDespacho);
 	}
 	

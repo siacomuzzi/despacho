@@ -10,7 +10,7 @@ public class Configuracion {
 		
 		// Configuracion de la queue de Deposito "UNO"
 		configuracion.put("Deposito-UNO-Queue-Url", "remote://localhost:4447");
-		configuracion.put("Deposito-UNO-Queue-Nombre", "jms/queue/solicitarArticuloOrdenDespacho");
+		configuracion.put("Deposito-UNO-Queue-Nombre", "jms/queue/test");
 		configuracion.put("Deposito-UNO-Queue-Usuario", "test");
 		configuracion.put("Deposito-UNO-Queue-Password", "test123");
 				

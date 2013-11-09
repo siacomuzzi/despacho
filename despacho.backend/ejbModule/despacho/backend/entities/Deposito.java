@@ -12,6 +12,10 @@ public class Deposito {
 		this.nombre = "";
 	}
 	
+	public Deposito(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	@Id
 	public String getNombre() {
 		return this.nombre;
