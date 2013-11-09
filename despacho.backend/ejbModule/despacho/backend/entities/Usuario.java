@@ -12,7 +12,6 @@ public class Usuario {
 	private Boolean activo;
 	
 	public Usuario() {
-		
 	}
 	
 	@Id

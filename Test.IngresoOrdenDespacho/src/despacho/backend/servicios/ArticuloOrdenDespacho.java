@@ -10,16 +10,16 @@ package despacho.backend.servicios;
 public class ArticuloOrdenDespacho  implements java.io.Serializable {
     private java.lang.String codigo;
 
-    private despacho.backend.servicios.Deposito deposito;
+    private java.lang.String ordenDespacho;
 
     public ArticuloOrdenDespacho() {
     }
 
     public ArticuloOrdenDespacho(
            java.lang.String codigo,
-           despacho.backend.servicios.Deposito deposito) {
+           java.lang.String ordenDespacho) {
            this.codigo = codigo;
-           this.deposito = deposito;
+           this.ordenDespacho = ordenDespacho;
     }
 
 
@@ -44,22 +44,22 @@ public class ArticuloOrdenDespacho  implements java.io.Serializable {
 
 
     /**
-     * Gets the deposito value for this ArticuloOrdenDespacho.
+     * Gets the ordenDespacho value for this ArticuloOrdenDespacho.
      * 
-     * @return deposito
+     * @return ordenDespacho
      */
-    public despacho.backend.servicios.Deposito getDeposito() {
-        return deposito;
+    public java.lang.String getOrdenDespacho() {
+        return ordenDespacho;
     }
 
 
     /**
-     * Sets the deposito value for this ArticuloOrdenDespacho.
+     * Sets the ordenDespacho value for this ArticuloOrdenDespacho.
      * 
-     * @param deposito
+     * @param ordenDespacho
      */
-    public void setDeposito(despacho.backend.servicios.Deposito deposito) {
-        this.deposito = deposito;
+    public void setOrdenDespacho(java.lang.String ordenDespacho) {
+        this.ordenDespacho = ordenDespacho;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -77,9 +77,9 @@ public class ArticuloOrdenDespacho  implements java.io.Serializable {
             ((this.codigo==null && other.getCodigo()==null) || 
              (this.codigo!=null &&
               this.codigo.equals(other.getCodigo()))) &&
-            ((this.deposito==null && other.getDeposito()==null) || 
-             (this.deposito!=null &&
-              this.deposito.equals(other.getDeposito())));
+            ((this.ordenDespacho==null && other.getOrdenDespacho()==null) || 
+             (this.ordenDespacho!=null &&
+              this.ordenDespacho.equals(other.getOrdenDespacho())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class ArticuloOrdenDespacho  implements java.io.Serializable {
         if (getCodigo() != null) {
             _hashCode += getCodigo().hashCode();
         }
-        if (getDeposito() != null) {
-            _hashCode += getDeposito().hashCode();
+        if (getOrdenDespacho() != null) {
+            _hashCode += getOrdenDespacho().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -115,9 +115,9 @@ public class ArticuloOrdenDespacho  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("deposito");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "deposito"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "deposito"));
+        elemField.setFieldName("ordenDespacho");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "ordenDespacho"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

@@ -8,16 +8,11 @@ public class Main {
 			// DCH02.Recepción y Procesamiento de Orden de Despacho (desde LOGISTICA)
 			ServicioOrdenesDespachoBean port = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoBeanPort();
 			
-			Deposito deposito1 = new Deposito();
-			deposito1.setNombre("UNO");
-			
 			ArticuloOrdenDespacho articulo1 = new ArticuloOrdenDespacho();
-			articulo1.setCodigo("articulo-01");
-			articulo1.setDeposito(deposito1);
+			articulo1.setCodigo("articulo01"); // articulo01 esta asociado al depositoA
 			
 			ArticuloOrdenDespacho articulo2 = new ArticuloOrdenDespacho();
-			articulo2.setCodigo("articulo-02");
-			articulo2.setDeposito(deposito1);
+			articulo2.setCodigo("articulo02"); // articulo02 esta asoaciado al depositoA
 			
 			OrdenDespacho orden = new OrdenDespacho();
 			orden.setCodigo("orden-despacho-01");

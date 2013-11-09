@@ -9,6 +9,7 @@ import javax.jws.*;
 import despacho.backend.administradores.*;
 import despacho.backend.entities.*;
 import despacho.backend.utils.Configuracion;
+import despacho.backend.utils.Logger;
 import despacho.backend.utils.MensajeAsincronico;
 
 @Stateless
@@ -20,47 +21,51 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	
 	@EJB
 	private AdministradorDepositos administradorDepositos;
+	
+	@EJB
+	private AdministradorArticulos administradorArticulos;
 
 	@Override
 	@WebMethod
 	// DCH02. Logistica ingresa nuevas ordenes de despacho
 	public void ingresarOrdenDespacho(OrdenDespacho ordenDespacho) {
-		System.out.println("Nueva Orden de despacho: " + ordenDespacho.getCodigo());
+		Logger.info("Nueva Orden de despacho: " + ordenDespacho.getCodigo());
 		
 		// Se deben registrar como pendientes de entrega
 		ordenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
 		
 		// Por cada articulo de la orden, se debe obtener el Deposito que lo administra y solicitarlo asincronicamente
-		List<ArticuloOrdenDespacho> articulos = ordenDespacho.getArticulos();
+		List<ArticuloOrdenDespacho> articulosOrden = ordenDespacho.getArticulos();
 		
-		if (articulos != null) {
-			for (ArticuloOrdenDespacho articulo : articulos) {
-				String nombreDeposito = articulo.getDeposito().getNombre();
-				Deposito deposito = this.administradorDepositos.get(nombreDeposito);
-				articulo.setDeposito(deposito);
+		if (articulosOrden != null) {
+			for (ArticuloOrdenDespacho articuloOrden : articulosOrden) {
+				String codigoArticulo = articuloOrden.getCodigo();
+				Articulo articulo = this.administradorArticulos.get(codigoArticulo);
 				
-				if (deposito != null) {
-					try {
-						// TODO: ver el error al enviar el mensaje a la queue
-						/*System.out.println("Enviando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito);
-						
-						MensajeAsincronico.EnviarObjeto(
-								Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Url"),
-								Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Nombre"), 
-								Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Usuario"),
-								Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Password"), 
-								articulo);*/
-					} catch (Exception e) {
-						// TODO: loguear errores
-						e.printStackTrace();
-					}
+				if (articulo == null) {
+					Logger.error("El articulo con codigo " + codigoArticulo + " no existe.");
+					break;
+				}
+				
+				// Obtengo el deposito asociado al articulo
+				String nombreDeposito = articulo.getDeposito().getNombre();
+				
+				try {
+					// TODO: ver el error al enviar el mensaje a la queue
+					/*Logger.info("Enviando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito);
 					
-					// TODO: Se debe registrar la solicitud por Deposito
+					MensajeAsincronico.EnviarObjeto(
+							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Url"),
+							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Nombre"), 
+							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Usuario"),
+							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Password"), 
+							articuloOrden);*/
+				} catch (Exception e) {
+					e.printStackTrace();
+					Logger.error(e.getMessage());
 				}
-				else {
-					// TODO: Devolver una exception
-					System.out.println("ERROR: El deposito " + nombreDeposito + " no existe.");
-				}
+				
+				// TODO: Se debe registrar la solicitud por Deposito
 			}
 		}
 		
@@ -70,7 +75,17 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	@PostConstruct
 	public void inicializacion () {
 		// Inicializar Depositos
-		this.administradorDepositos.agregar(new Deposito(Configuracion.get().get("DepositoA-Nombre")));
-		this.administradorDepositos.agregar(new Deposito(Configuracion.get().get("DepositoB-Nombre")));
+		Deposito depositoA = new Deposito(Configuracion.get().get("DepositoA-Nombre"));
+		Deposito depositoB = new Deposito(Configuracion.get().get("DepositoB-Nombre"));
+		this.administradorDepositos.agregar(depositoA);
+		this.administradorDepositos.agregar(depositoB);
+		
+		// Inicializar articulos
+		Articulo articulo1 = new Articulo("articulo01", depositoA);
+		Articulo articulo2 = new Articulo("articulo02", depositoA);
+		Articulo articulo3 = new Articulo("articulo03", depositoB);
+		this.administradorArticulos.agregar(articulo1);
+		this.administradorArticulos.agregar(articulo2);
+		this.administradorArticulos.agregar(articulo3);
 	}
 }

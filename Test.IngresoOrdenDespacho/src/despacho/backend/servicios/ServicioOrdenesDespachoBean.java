@@ -9,4 +9,5 @@ package despacho.backend.servicios;
 
 public interface ServicioOrdenesDespachoBean extends java.rmi.Remote {
     public void ingresarOrdenDespacho(despacho.backend.servicios.OrdenDespacho arg0) throws java.rmi.RemoteException;
+    public void inicializacion() throws java.rmi.RemoteException;
 }

@@ -12,14 +12,12 @@ public class ArticuloOrdenDespacho implements Serializable {
 
 	private String codigo;
 	private String ordenDespacho;
-	private Deposito deposito;
 	
 	public ArticuloOrdenDespacho() {
 	}
 	
 	public ArticuloOrdenDespacho(String codigo) {
 		this.codigo = codigo;
-		this.deposito = new Deposito();
 	}
 	
 	@Id
@@ -38,13 +36,4 @@ public class ArticuloOrdenDespacho implements Serializable {
 	public void setOrdenDespacho(String ordenDespacho) {
 		this.ordenDespacho = ordenDespacho;
 	}
-
-	@ManyToOne
-	public Deposito getDeposito() {
-		return deposito;
-	}
-
-	public void setDeposito(Deposito deposito) {
-		this.deposito = deposito;
-	}	
 }

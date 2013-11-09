@@ -50,5 +50,11 @@ public class ServicioOrdenesDespachoBeanProxy implements despacho.backend.servic
     servicioOrdenesDespachoBean.ingresarOrdenDespacho(arg0);
   }
   
+  public void inicializacion() throws java.rmi.RemoteException{
+    if (servicioOrdenesDespachoBean == null)
+      _initServicioOrdenesDespachoBeanProxy();
+    servicioOrdenesDespachoBean.inicializacion();
+  }
+  
   
 }
