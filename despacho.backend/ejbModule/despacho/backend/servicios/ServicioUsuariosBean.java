@@ -15,16 +15,16 @@ public class ServicioUsuariosBean implements ServicioUsuarios {
 	
 	@Override
 	public void crearUsuario(Usuario usuario) {
-		this.administradorUsuarios.agregarUsuario(usuario);
+		this.administradorUsuarios.agregar(usuario);
 	}
 
 	@Override
 	public List<Usuario> listarUsuarios() {
-		return this.administradorUsuarios.obtenerUsuarios();
+		return this.administradorUsuarios.listar();
 	}
 
 	@Override
 	public void actualizarUsuario(Usuario usuario) {
-		this.administradorUsuarios.actualizarUsuario(usuario);
+		this.administradorUsuarios.actualizar(usuario);
 	}
 }

@@ -8,9 +8,9 @@ import despacho.backend.entities.Usuario;
 
 @Remote
 public interface ServicioUsuarios {
-	public void crearUsuario(Usuario usuario);
+	void crearUsuario(Usuario usuario);
 	
-	public List<Usuario> listarUsuarios();
+	List<Usuario> listarUsuarios();
 	
-	public void actualizarUsuario(Usuario usuario);
+	void actualizarUsuario(Usuario usuario);
 }

@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.ejb.*;
 
-import despacho.backend.entities.Usuario;
+import despacho.backend.entities.*;
 
 @Local
 public interface AdministradorUsuarios {
-	public void agregarUsuario(Usuario usuario);
+	void agregar(Usuario usuario);
 	
-	public List<Usuario> obtenerUsuarios();
+	List<Usuario> listar();
 	
-	public void actualizarUsuario(Usuario usuario);
+	void actualizar(Usuario usuario);
 }
