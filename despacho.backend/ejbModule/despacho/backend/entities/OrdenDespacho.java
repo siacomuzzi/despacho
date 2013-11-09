@@ -10,6 +10,7 @@ public class OrdenDespacho {
 	
 	private String codigo;
 	private String estado;
+	private Date fecha;
 	private List<ArticuloOrdenDespacho> articulos;
 	
 	public OrdenDespacho() {
@@ -18,6 +19,7 @@ public class OrdenDespacho {
 	public OrdenDespacho(String codigo) {
 		this.codigo = codigo;
 		this.estado = "";
+		this.fecha = new Date(); // el constructor devuelve la fecha actual
 		this.articulos = new ArrayList<ArticuloOrdenDespacho>();
 	}
 
@@ -38,6 +40,14 @@ public class OrdenDespacho {
 		this.estado = estado;
 	}
 	
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ordenDespacho")
 	public List<ArticuloOrdenDespacho> getArticulos() {
 		return articulos;
