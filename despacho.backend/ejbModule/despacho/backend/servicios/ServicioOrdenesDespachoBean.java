@@ -93,13 +93,13 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	
 	@PostConstruct
 	public void inicializacion () {
-		// Inicializar Depositos
+		// Inicializar Depositos (esto se va a hacer en DCH01)
 		Deposito depositoA = new Deposito(Configuracion.get().get("DepositoA-Nombre"));
 		Deposito depositoB = new Deposito(Configuracion.get().get("DepositoB-Nombre"));
 		this.administradorDepositos.agregar(depositoA);
 		this.administradorDepositos.agregar(depositoB);
 		
-		// Inicializar articulos
+		// Inicializar articulos (esto se va a hacer en DCH01)
 		Articulo articulo1 = new Articulo("articulo01", depositoA);
 		Articulo articulo2 = new Articulo("articulo02", depositoA);
 		Articulo articulo3 = new Articulo("articulo03", depositoB);
