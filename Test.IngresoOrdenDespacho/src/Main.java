@@ -16,8 +16,8 @@ public class Main {
 			articulo1.setDeposito(deposito1);
 			
 			ArticuloOrdenDespacho articulo2 = new ArticuloOrdenDespacho();
-			articulo1.setCodigo("articulo-02");
-			articulo1.setDeposito(deposito1);
+			articulo2.setCodigo("articulo-02");
+			articulo2.setDeposito(deposito1);
 			
 			OrdenDespacho orden = new OrdenDespacho();
 			orden.setCodigo("orden-despacho-01");
