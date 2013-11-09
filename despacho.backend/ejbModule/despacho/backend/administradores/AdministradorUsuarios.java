@@ -1,14 +1,14 @@
-package despacho.backend.services;
+package despacho.backend.administradores;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.*;
 
 import despacho.backend.entities.Usuario;
 
-@Remote
+@Local
 public interface AdministradorUsuarios {
-	public void crearUsuario(Usuario usuario);
+	public void agregarUsuario(Usuario usuario);
 	
 	public List<Usuario> obtenerUsuarios();
 	

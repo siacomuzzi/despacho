@@ -1,4 +1,4 @@
-package despacho.backend.services;
+package despacho.backend.administradores;
 
 import java.util.*;
 
@@ -9,10 +9,11 @@ import despacho.backend.entities.*;
 
 @Stateless
 public class AdministradorUsuariosBean implements AdministradorUsuarios {
+	
 	@PersistenceContext(unitName="portalweb.despacho")
 	private EntityManager em;
 
-	public void crearUsuario(Usuario usuario) {	
+	public void agregarUsuario(Usuario usuario) {	
 		this.em.persist(usuario);
 	}
 	
