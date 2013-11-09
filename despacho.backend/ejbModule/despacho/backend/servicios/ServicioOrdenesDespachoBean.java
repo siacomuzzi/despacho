@@ -11,6 +11,8 @@ import despacho.backend.entities.*;
 import despacho.backend.utils.Configuracion;
 import despacho.backend.utils.Logger;
 import despacho.backend.utils.MensajeAsincronico;
+import despacho.backend.utils.MensajeSincronicoRest;
+import despacho.backend.utils.MensajeSincronicoWS;
 
 @Stateless
 @WebService
@@ -52,14 +54,15 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				
 				try {
 					// TODO: ver el error al enviar el mensaje a la queue
-					/*Logger.info("Enviando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito);
+					Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
 					
+					// Solicitar articulo al deposito
 					MensajeAsincronico.EnviarObjeto(
-							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Url"),
-							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Nombre"), 
-							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Usuario"),
-							Configuracion.get().get("Deposito-" + nombreDeposito + "-Queue-Password"), 
-							articuloOrden);*/
+							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Url"),
+							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Nombre"), 
+							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Usuario"),
+							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Password"), 
+							articuloOrden);
 				} catch (Exception e) {
 					e.printStackTrace();
 					Logger.error(e.getMessage());
@@ -70,10 +73,12 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		}
 		
 		this.administradorOrdenesDespacho.agregar(ordenDespacho);
+		
+		Logger.info("Listo (DCH02)!");
 	}
 	
 	@Override
-	// DCH04.Envío Cambio de Estado de Despacho (Entrega)
+	// DCH04. Envío Cambio de Estado de Despacho (Entrega)
 	public void completarOrdenDespacho(String codigo) {
 		Logger.info("Completar Orden de Despacho: " + codigo);
 		
@@ -83,19 +88,34 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			return;
 		}
 		
-		// TODO: Informar en comunicación sincrónica a los Portales
-		// TODO: Informar en comunicación sincrónica (REST) al módulo Logística
+		// Informar en comunicación sincrónica (WS) a los Portales
+		for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
+			Logger.info("Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
+			
+			MensajeSincronicoWS.Enviar(
+					Configuracion.getInstancia().get().get(nombrePortal + "-OrdenDespachoListaWS-Url"), 
+					null); // TODO: ver que objeto enviar
+		}
+		
+		// Informar en comunicación sincrónica (REST) al módulo Logística
+		Logger.info("Informando a Logistica que la orden de despacho fue completada...");
+		
+		MensajeSincronicoRest.Enviar(
+				Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
+				null); // TODO: ver que objeto enviar
 		
 		// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
 		orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
 		this.administradorOrdenesDespacho.actualizar(orden);
+		
+		Logger.info("Listo (DCH04)!");
 	}
 	
 	@PostConstruct
 	public void inicializacion () {
-		// Inicializar Depositos (esto se va a hacer en DCH01)
-		Deposito depositoA = new Deposito(Configuracion.get().get("DepositoA-Nombre"));
-		Deposito depositoB = new Deposito(Configuracion.get().get("DepositoB-Nombre"));
+		// Inicializar Depositos
+		Deposito depositoA = new Deposito(Configuracion.getInstancia().get().get("DepositoA-Nombre"));
+		Deposito depositoB = new Deposito(Configuracion.getInstancia().get().get("DepositoB-Nombre"));
 		this.administradorDepositos.agregar(depositoA);
 		this.administradorDepositos.agregar(depositoB);
 		
