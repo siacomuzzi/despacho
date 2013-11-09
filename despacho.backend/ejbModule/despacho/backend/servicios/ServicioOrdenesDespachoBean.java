@@ -24,6 +24,8 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			return;
 		}
 		
+		System.out.println("Nueva Orden de despacho: " + ordenDespacho.getCodigo());
+		
 		// Se deben registrar como pendientes de entrega
 		ordenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
 		
@@ -36,6 +38,8 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				
 				if (deposito != null) {
 					try {
+						System.out.println("Enviando articulo " + articulo.getCodigo() + " al deposito " + deposito.getNombre());
+						
 						MensajeAsincronico.EnviarObjeto(
 								Configuracion.get().get("Deposito-" + deposito.getNombre() + "-Queue-Url"),
 								Configuracion.get().get("Deposito-" + deposito.getNombre() + "-Queue-Nombre"), 
