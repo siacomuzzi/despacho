@@ -2,6 +2,7 @@ package despacho.backend.servicios;
 
 import java.util.*;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.jws.*;
 
@@ -25,9 +26,6 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	// DCH02. Logistica ingresa nuevas ordenes de despacho
 	public void ingresarOrdenDespacho(OrdenDespacho ordenDespacho) {
 		System.out.println("Nueva Orden de despacho: " + ordenDespacho.getCodigo());
-		
-		// TODO: inicializar todos los datos desde otro lado
-		this.administradorDepositos.agregar(new Deposito("UNO"));
 		
 		// Se deben registrar como pendientes de entrega
 		ordenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
@@ -67,5 +65,12 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		}
 		
 		this.administradorOrdenesDespacho.agregar(ordenDespacho);
+	}
+	
+	@PostConstruct
+	public void inicializacion () {
+		// Inicializar Depositos
+		this.administradorDepositos.agregar(new Deposito(Configuracion.get().get("DepositoA-Nombre")));
+		this.administradorDepositos.agregar(new Deposito(Configuracion.get().get("DepositoB-Nombre")));
 	}
 }
