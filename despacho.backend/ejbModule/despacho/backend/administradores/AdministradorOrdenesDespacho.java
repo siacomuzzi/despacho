@@ -13,4 +13,6 @@ public interface AdministradorOrdenesDespacho {
 	List<OrdenDespacho> listar();
 	
 	void actualizar(OrdenDespacho ordenDespacho);
+	
+	OrdenDespacho get(String id);
 }

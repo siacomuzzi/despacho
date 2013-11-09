@@ -14,6 +14,7 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 	@PersistenceContext(unitName="portalweb.despacho")
 	private EntityManager em;
 
+	@Override
 	public void agregar(OrdenDespacho ordenDespacho) {
 		for (ArticuloOrdenDespacho articulo : ordenDespacho.getArticulos()) {
 			articulo.setOrdenDespacho(ordenDespacho.getCodigo());
@@ -22,13 +23,20 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 		this.em.persist(ordenDespacho);
 	}
 	
+	@Override
 	public List<OrdenDespacho> listar() {
 		@SuppressWarnings("unchecked")
 		List<OrdenDespacho> ordenesDespacho = this.em.createQuery("FROM ORDENES_DESPACHO").getResultList();
 		return ordenesDespacho;
 	}
 	
+	@Override
 	public void actualizar(OrdenDespacho ordenDespacho) {
 		this.em.merge(ordenDespacho);
+	}
+	
+	@Override
+	public OrdenDespacho get(String id) {
+		return this.em.find(OrdenDespacho.class, id);
 	}
 }

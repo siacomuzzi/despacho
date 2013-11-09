@@ -72,6 +72,25 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		this.administradorOrdenesDespacho.agregar(ordenDespacho);
 	}
 	
+	@Override
+	// DCH04.Envío Cambio de Estado de Despacho (Entrega)
+	public void completarOrdenDespacho(String codigo) {
+		Logger.info("Completar Orden de Despacho: " + codigo);
+		
+		OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
+		if (orden == null) {
+			Logger.error("La orden de despacho con codigo " + codigo + " no existe.");
+			return;
+		}
+		
+		// TODO: Informar en comunicación sincrónica a los Portales
+		// TODO: Informar en comunicación sincrónica (REST) al módulo Logística
+		
+		// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
+		orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
+		this.administradorOrdenesDespacho.actualizar(orden);
+	}
+	
 	@PostConstruct
 	public void inicializacion () {
 		// Inicializar Depositos
