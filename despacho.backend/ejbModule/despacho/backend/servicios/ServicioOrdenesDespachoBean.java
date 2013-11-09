@@ -54,7 +54,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				
 				try {
 					// TODO: ver el error al enviar el mensaje a la queue
-					Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
+					/*Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
 					
 					// Solicitar articulo al deposito
 					MensajeAsincronico.EnviarObjeto(
@@ -62,7 +62,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Nombre"), 
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Usuario"),
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Password"), 
-							articuloOrden);
+							articuloOrden);*/
 				} catch (Exception e) {
 					e.printStackTrace();
 					Logger.error(e.getMessage());
@@ -114,8 +114,9 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	@PostConstruct
 	public void inicializacion () {
 		// Inicializar Depositos
-		Deposito depositoA = new Deposito(Configuracion.getInstancia().get().get("DepositoA-Nombre"));
-		Deposito depositoB = new Deposito(Configuracion.getInstancia().get().get("DepositoB-Nombre"));
+		String[] depositos = Configuracion.getInstancia().getDepositos();
+		Deposito depositoA = new Deposito(depositos[0]);
+		Deposito depositoB = new Deposito(depositos[1]);
 		this.administradorDepositos.agregar(depositoA);
 		this.administradorDepositos.agregar(depositoB);
 		

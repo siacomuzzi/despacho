@@ -14,6 +14,7 @@ public class OrdenDespacho {
 	private List<ArticuloOrdenDespacho> articulos;
 	
 	public OrdenDespacho() {
+		this.fecha = new Date();
 	}
 	
 	public OrdenDespacho(String codigo) {

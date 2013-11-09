@@ -8,6 +8,9 @@ public class Configuracion {
 	private static Configuracion instance = null;
 	
 	private Configuracion() {
+		// Configuracion de Depositos
+		configuracion.put("Depositos", "DepositoA;DepositoB");
+		
 		// Configuracion de DepositoA
 		configuracion.put("DepositoA-SolicitarArticuloQueue-Url", "remote://localhost:4447");
 		configuracion.put("DepositoA-SolicitarArticuloQueue-Nombre", "jms/queue/test");
@@ -32,6 +35,10 @@ public class Configuracion {
 		}
 		
 		return instance;
+	}
+	
+	public String[] getDepositos() {
+		return configuracion.get("Depositos").split(";");
 	}
 	
 	public String[] getPortales() {
