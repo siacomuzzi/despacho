@@ -80,6 +80,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	@Override
 	// DCH04. Envío Cambio de Estado de Despacho (Entrega)
 	public void completarOrdenDespacho(String codigo) {
+		// TODO: Quien llama a este metodo?
 		Logger.info("Completar Orden de Despacho: " + codigo);
 		
 		OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
