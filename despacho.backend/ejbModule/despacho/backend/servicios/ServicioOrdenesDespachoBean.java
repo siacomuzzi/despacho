@@ -100,9 +100,14 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		// Informar en comunicación sincrónica (REST) al módulo Logística
 		Logger.info("Informando a Logistica que la orden de despacho fue completada...");
 		
-		MensajeSincronicoRest.Enviar(
-				Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
-				null); // TODO: ver que objeto enviar
+		try {
+			MensajeSincronicoRest.Post(
+					Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
+					null); // TODO: ver que objeto enviar
+		} catch (Exception e) {
+			e.printStackTrace();
+			Logger.error(e.getMessage());
+		}
 		
 		// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
 		orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
