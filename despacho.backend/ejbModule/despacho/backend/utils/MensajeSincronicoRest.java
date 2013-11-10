@@ -12,7 +12,7 @@ import com.google.gson.GsonBuilder;
 
 public class MensajeSincronicoRest {
 
-	public static void Post(String url, Object objeto) throws Exception {
+	public static void post(String url, Object objeto) throws Exception {
 		try { 
 			// Creo el JSON 
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();

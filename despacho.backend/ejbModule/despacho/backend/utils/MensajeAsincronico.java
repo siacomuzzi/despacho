@@ -13,7 +13,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 public class MensajeAsincronico {
-	public static void EnviarObjeto(String url, String queueName, String user, String password, Serializable objeto) throws Exception {
+	public static void enviarObjeto(String url, String queueName, String user, String password, Serializable objeto) throws Exception {
 
 		try {
 			final Properties env = new Properties();

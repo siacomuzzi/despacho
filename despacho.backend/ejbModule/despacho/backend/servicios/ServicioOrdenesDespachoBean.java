@@ -57,7 +57,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					/*Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
 					
 					// Solicitar articulo al deposito
-					MensajeAsincronico.EnviarObjeto(
+					MensajeAsincronico.enviarObjeto(
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Url"),
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Nombre"), 
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Usuario"),
@@ -89,20 +89,18 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			return;
 		}
 		
-		// Informar en comunicación sincrónica (WS) a los Portales
+		// Informar a los portales que todos los articulos de una Orden de Despacho estén listos para Entrega
 		for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
 			Logger.info("Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
 			
-			MensajeSincronicoWS.Enviar(
-					Configuracion.getInstancia().get().get(nombrePortal + "-OrdenDespachoListaWS-Url"), 
-					null); // TODO: ver que objeto enviar
+			MensajeSincronicoWS.informarOrdenListaEntrega(null, nombrePortal); // TODO: ver que objeto enviar
 		}
 		
 		// Informar en comunicación sincrónica (REST) al módulo Logística
 		Logger.info("Informando a Logistica que la orden de despacho fue completada...");
 		
 		try {
-			MensajeSincronicoRest.Post(
+			MensajeSincronicoRest.post(
 					Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
 					null); // TODO: ver que objeto enviar
 		} catch (Exception e) {
