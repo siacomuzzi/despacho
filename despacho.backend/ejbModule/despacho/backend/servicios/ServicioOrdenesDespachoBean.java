@@ -2,7 +2,6 @@ package despacho.backend.servicios;
 
 import java.util.*;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.jws.*;
 
@@ -138,25 +137,5 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		this.administradorOrdenesDespacho.actualizar(orden);
 		
 		Logger.info("Listo (DCH04)!");
-	}
-	
-	@PostConstruct
-	public void inicializacion () {
-		// Inicializar Depositos
-		String[] depositos = Configuracion.getInstancia().getDepositos();
-		Deposito depositoA = new Deposito(depositos[0]);
-		Deposito depositoB = new Deposito(depositos[1]);
-		Deposito depositoC = new Deposito(depositos[2]);
-		this.administradorDepositos.agregar(depositoA);
-		this.administradorDepositos.agregar(depositoB);
-		this.administradorDepositos.agregar(depositoC);
-		
-		// Inicializar articulos (esto se va a hacer en DCH01)
-		Articulo articulo1 = new Articulo("articulo01", depositoB);
-		Articulo articulo2 = new Articulo("articulo02", depositoB);
-		Articulo articulo3 = new Articulo("articulo03", depositoA);
-		this.administradorArticulos.agregar(articulo1);
-		this.administradorArticulos.agregar(articulo2);
-		this.administradorArticulos.agregar(articulo3);
 	}
 }
