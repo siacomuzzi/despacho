@@ -3,6 +3,7 @@
 	<name>despacho.backend</name>
 	<comment></comment>
 	<projects>
+		<project>integracion</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

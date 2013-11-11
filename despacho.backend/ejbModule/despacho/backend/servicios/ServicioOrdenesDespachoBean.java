@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.jws.*;
 
+import ar.edu.uade.integracion.VO.ItemSolicitudArticuloVO;
+import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 import despacho.backend.administradores.*;
 import despacho.backend.entities.*;
 import despacho.backend.utils.Configuracion;
@@ -54,8 +56,25 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				String nombreDeposito = articulo.getDeposito().getNombre();
 				
 				try {
-					// TODO: ver el error al enviar el mensaje a la queue
-					/*Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
+					// Solicitar articulo
+					Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
+					
+					// El id de la solicitud es "{codigoOrden}-{codigoArticulo}"
+					String idSolicitudArticulo = articuloOrden.getOrdenDespacho() + articuloOrden.getCodigo();
+					
+					ItemSolicitudArticuloVO itemSolicitud = new ItemSolicitudArticuloVO();
+					itemSolicitud.setIdArticulo(articuloOrden.getCodigo());
+					itemSolicitud.setCantSolicitada(articuloOrden.getCantidad());
+					
+					List<ItemSolicitudArticuloVO> articulosSolicitud = new ArrayList<ItemSolicitudArticuloVO>();
+					articulosSolicitud.add(itemSolicitud);
+					
+					SolicitudArticuloVO solicitudDeposito = new SolicitudArticuloVO();
+					solicitudDeposito.setEstado(EstadoSolicitudArticulo.SOLICITADO);
+					solicitudDeposito.setFecha(new Date());
+					solicitudDeposito.setIdDespacho(Configuracion.getInstancia().get().get("NombreDespacho"));
+					solicitudDeposito.setIdSolicitudArticulo(idSolicitudArticulo);
+					solicitudDeposito.setArticulos(articulosSolicitud);
 					
 					// Solicitar articulo al deposito
 					MensajeAsincronico.enviarObjeto(
@@ -63,18 +82,20 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Nombre"), 
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Usuario"),
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Password"), 
-							articuloOrden);*/
+							solicitudDeposito);
+					
+					// Registrar la solicitud por Deposito
+					SolicitudArticulo solicitud = new SolicitudArticulo();
+					solicitud.setId(idSolicitudArticulo);
+					solicitud.setArticuloOrdenDespacho(articuloOrden);
+					solicitud.setDeposito(nombreDeposito);
+					solicitud.setEstado(EstadoSolicitudArticulo.SOLICITADO);
+					this.administradorArticulos.guardarSolicitud(solicitud);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					Logger.error(e.getMessage());
 				}
-				
-				// Registrar la solicitud por Deposito
-				SolicitudArticulo solicitud = new SolicitudArticulo();
-				solicitud.setArticuloOrdenDespacho(articuloOrden);
-				solicitud.setDeposito(nombreDeposito);
-				solicitud.setEstado(EstadoSolicitudArticulo.SOLICITADO);
-				this.administradorArticulos.guardarSolicitud(solicitud);
 			}
 		}
 		
@@ -125,13 +146,15 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		String[] depositos = Configuracion.getInstancia().getDepositos();
 		Deposito depositoA = new Deposito(depositos[0]);
 		Deposito depositoB = new Deposito(depositos[1]);
+		Deposito depositoC = new Deposito(depositos[2]);
 		this.administradorDepositos.agregar(depositoA);
 		this.administradorDepositos.agregar(depositoB);
+		this.administradorDepositos.agregar(depositoC);
 		
 		// Inicializar articulos (esto se va a hacer en DCH01)
-		Articulo articulo1 = new Articulo("articulo01", depositoA);
-		Articulo articulo2 = new Articulo("articulo02", depositoA);
-		Articulo articulo3 = new Articulo("articulo03", depositoB);
+		Articulo articulo1 = new Articulo("articulo01", depositoC);
+		Articulo articulo2 = new Articulo("articulo02", depositoC);
+		Articulo articulo3 = new Articulo("articulo03", depositoA);
 		this.administradorArticulos.agregar(articulo1);
 		this.administradorArticulos.agregar(articulo2);
 		this.administradorArticulos.agregar(articulo3);

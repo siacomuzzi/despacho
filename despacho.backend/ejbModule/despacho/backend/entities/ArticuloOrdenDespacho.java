@@ -13,6 +13,7 @@ public class ArticuloOrdenDespacho implements Serializable {
 	private long id;
 	private String codigo;
 	private String ordenDespacho;
+	private int cantidad;
 	
 	public ArticuloOrdenDespacho() {
 	}
@@ -45,5 +46,13 @@ public class ArticuloOrdenDespacho implements Serializable {
 
 	public void setOrdenDespacho(String ordenDespacho) {
 		this.ordenDespacho = ordenDespacho;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 }

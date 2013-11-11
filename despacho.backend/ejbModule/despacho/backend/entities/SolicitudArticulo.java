@@ -3,8 +3,6 @@ package despacho.backend.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,7 +13,7 @@ public class SolicitudArticulo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	private String id;
 	private ArticuloOrdenDespacho articuloOrdenDespacho;
 	private String estado;
 	private String deposito;
@@ -24,12 +22,11 @@ public class SolicitudArticulo implements Serializable {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
