@@ -35,6 +35,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		
 		// Se deben registrar como pendientes de entrega
 		ordenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
+		this.administradorOrdenesDespacho.agregar(ordenDespacho);
 		
 		// Por cada articulo de la orden, se debe obtener el Deposito que lo administra y solicitarlo asincronicamente
 		List<ArticuloOrdenDespacho> articulosOrden = ordenDespacho.getArticulos();
@@ -68,11 +69,14 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					Logger.error(e.getMessage());
 				}
 				
-				// TODO: Se debe registrar la solicitud por Deposito
+				// Registrar la solicitud por Deposito
+				SolicitudArticulo solicitud = new SolicitudArticulo();
+				solicitud.setArticuloOrdenDespacho(articuloOrden);
+				solicitud.setDeposito(nombreDeposito);
+				solicitud.setEstado(EstadoSolicitudArticulo.SOLICITADO);
+				this.administradorArticulos.guardarSolicitud(solicitud);
 			}
 		}
-		
-		this.administradorOrdenesDespacho.agregar(ordenDespacho);
 		
 		Logger.info("Listo (DCH02)!");
 	}

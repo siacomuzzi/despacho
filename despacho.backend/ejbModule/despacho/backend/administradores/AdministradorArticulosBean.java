@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import despacho.backend.entities.Articulo;
+import despacho.backend.entities.SolicitudArticulo;
 
 @Stateless
 public class AdministradorArticulosBean implements AdministradorArticulos {
@@ -17,6 +18,11 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 		if (this.get(articulo.getCodigo()) == null) {
 			this.em.persist(articulo);
 		}
+	}
+	
+	@Override
+	public void guardarSolicitud(SolicitudArticulo solicitud) {
+		this.em.persist(solicitud);
 	}
 	
 	@Override

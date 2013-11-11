@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +33,7 @@ public class SolicitudArticulo implements Serializable {
 		this.id = id;
 	}
 
+	@OneToOne
 	public ArticuloOrdenDespacho getArticuloOrdenDespacho() {
 		return articuloOrdenDespacho;
 	}
