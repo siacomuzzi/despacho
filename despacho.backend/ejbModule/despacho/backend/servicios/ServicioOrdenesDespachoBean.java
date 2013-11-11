@@ -152,8 +152,8 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 		this.administradorDepositos.agregar(depositoC);
 		
 		// Inicializar articulos (esto se va a hacer en DCH01)
-		Articulo articulo1 = new Articulo("articulo01", depositoC);
-		Articulo articulo2 = new Articulo("articulo02", depositoC);
+		Articulo articulo1 = new Articulo("articulo01", depositoB);
+		Articulo articulo2 = new Articulo("articulo02", depositoB);
 		Articulo articulo3 = new Articulo("articulo03", depositoA);
 		this.administradorArticulos.agregar(articulo1);
 		this.administradorArticulos.agregar(articulo2);

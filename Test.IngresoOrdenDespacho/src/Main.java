@@ -9,10 +9,10 @@ public class Main {
 			ServicioOrdenesDespachoBean port = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoBeanPort();
 			
 			ArticuloOrdenDespacho articulo1 = new ArticuloOrdenDespacho();
-			articulo1.setCodigo("articulo01"); // articulo01 esta asociado al depositoA
+			articulo1.setCodigo("articulo01");
 			
 			ArticuloOrdenDespacho articulo2 = new ArticuloOrdenDespacho();
-			articulo2.setCodigo("articulo02"); // articulo02 esta asoaciado al depositoA
+			articulo2.setCodigo("articulo02");
 			
 			OrdenDespacho orden = new OrdenDespacho();
 			orden.setCodigo("orden-despacho-01");
