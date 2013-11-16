@@ -31,7 +31,7 @@ public class ServicioArticulosBean implements ServicioArticulos {
 				return;
 			}
 			
-			Logger.info("Nuevo articulo ingresado: " + articulo.getIdarticulo() + " - Deposito: " + articulo.getIdDeposito());
+			Logger.info("DCH01", "Nuevo articulo ingresado: " + articulo.getIdarticulo() + " - Deposito: " + articulo.getIdDeposito());
 			
 			// Persistir el articulo
 			List<ArticuloAtributo> nuevoArticuloAtributos = new ArrayList<ArticuloAtributo>();
@@ -58,11 +58,11 @@ public class ServicioArticulosBean implements ServicioArticulos {
 			
 			this.administradorArticulos.agregar(nuevoArticulo);
 			
-			Logger.info("Listo (DCH01 - Recibir nuevo Artículo)");
+			Logger.info("DCH01", "Listo (DCH01 - Recibir nuevo Artículo)");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			Logger.error(e.getMessage());
+			Logger.error("DCH01", e.getMessage());
 		}
 	}
 	
@@ -70,15 +70,15 @@ public class ServicioArticulosBean implements ServicioArticulos {
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
 	public void recepcionArticulosParaDespachar() {
 		try {
-			Logger.info("");
+			Logger.info("DCH03", "");
 			
 			// TODO
 			
-			Logger.info("Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
+			Logger.info("DCH03", "Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			Logger.error(e.getMessage());
+			Logger.error("DCH31", e.getMessage());
 		}
 	}
 }

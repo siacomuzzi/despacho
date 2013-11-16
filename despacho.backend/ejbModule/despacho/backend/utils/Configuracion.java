@@ -39,6 +39,15 @@ public class Configuracion {
 		
 		// Configuracion de Despacho
 		configuracion.put("NombreDespacho", "DespachoA");
+		configuracion.put("CodigoModuloParaLog", "999");
+		
+		// Configuracion de Auditoria
+		configuracion.put("logAsincrono", "true");
+		configuracion.put("Auditoria-LoguearEventoWS-Url", "https://192.168.X.XXX/loguearEvento?wsdl");
+		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
+		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "loguearEventosQueue");
+		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "jms");
+		configuracion.put("Auditoria-LoguearEventoQueue-Password", "jms2013");
 	}
 	
 	public static Configuracion getInstancia() {

@@ -35,7 +35,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				return;
 			}
 			
-			Logger.info("Nueva Orden de despacho con codigo: " + ordenDespacho.getCodOrden());
+			Logger.info("DCH02", "Nueva Orden de despacho con codigo: " + ordenDespacho.getCodOrden());
 			
 			List<SolicitudArticulo> articulos = new ArrayList<SolicitudArticulo>();
 			
@@ -48,7 +48,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					Articulo articulo = this.administradorArticulos.get(codigoArticulo);
 					
 					if (articulo == null) {
-						Logger.error("El articulo con codigo " + codigoArticulo + " no existe.");
+						Logger.error("DCH02", "El articulo con codigo " + codigoArticulo + " no existe.");
 						break;
 					}
 					
@@ -56,7 +56,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					String nombreDeposito = articulo.getIdDeposito();
 					
 					// Solicitar articulo
-					Logger.info("Solicitando articulo " + articulo.getIdArticulo() + " al deposito " + nombreDeposito + "...");
+					Logger.info("DCH02", "Solicitando articulo " + articulo.getIdArticulo() + " al deposito " + nombreDeposito + "...");
 				
 					// El id de la solicitud es "{CodigoOrden}-{IdArticulo}"
 					String idSolicitudArticulo = ordenDespacho.getCodOrden() + "-" + articuloOrden.getIdArticulo();
@@ -104,49 +104,50 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			nuevaOrdenDespacho.setArticulos(articulos);
 			this.administradorOrdenesDespacho.agregar(nuevaOrdenDespacho);
 			
-			Logger.info("Listo (DCH02 - Logistica ingresa nuevas ordenes de despacho)");
+			Logger.info("DCH02", "Listo (DCH02 - Logistica ingresa nuevas ordenes de despacho)");
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			Logger.error(e.getMessage());
+			Logger.error("DCH02", e.getMessage());
 		}
 	}
 	
 	@Override
 	// DCH04. Envío Cambio de Estado de Despacho (Entrega)
 	public void completarOrdenDespacho(String codigo) {
-		// TODO: Quien llama a este metodo?
-		Logger.info("Completar Orden de Despacho: " + codigo);
-		
-		OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
-		if (orden == null) {
-			Logger.error("La orden de despacho con codigo " + codigo + " no existe.");
-			return;
-		}
-		
-		// Informar a los portales que todos los articulos de una Orden de Despacho estén listos para Entrega
-		for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
-			Logger.info("Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
-			
-			MensajeSincronicoWS.informarOrdenListaEntrega(null, nombrePortal); // TODO: ver que objeto enviar
-		}
-		
-		// Informar en comunicación sincrónica (REST) al módulo Logística
-		Logger.info("Informando a Logistica que la orden de despacho fue completada...");
-		
 		try {
+			// TODO: Quien llama a este metodo?
+			Logger.info("DCH04", "Completar Orden de Despacho: " + codigo);
+			
+			OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
+			if (orden == null) {
+				Logger.error("DCH04", "La orden de despacho con codigo " + codigo + " no existe.");
+				return;
+			}
+			
+			// Informar a los portales que todos los articulos de una Orden de Despacho estén listos para Entrega
+			for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
+				Logger.info("DCH04", "Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
+				
+				MensajeSincronicoWS.informarOrdenListaEntrega(null, nombrePortal); // TODO: ver que objeto enviar
+			}
+			
+			// Informar en comunicación sincrónica (REST) al módulo Logística
+			Logger.info("DCH04", "Informando a Logistica que la orden de despacho fue completada...");
+			
 			MensajeSincronicoRest.post(
 					Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
 					null); // TODO: ver que objeto enviar
-		} catch (Exception e) {
-			e.printStackTrace();
-			Logger.error(e.getMessage());
+			
+			// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
+			orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
+			this.administradorOrdenesDespacho.actualizar(orden);
+			
+			Logger.info("DCH04", "Listo (DCH04 - Envío Cambio de Estado de Despacho (Entrega))");
 		}
-		
-		// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
-		orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
-		this.administradorOrdenesDespacho.actualizar(orden);
-		
-		Logger.info("Listo (DCH04)!");
+		catch (Exception e) {
+			e.printStackTrace();
+			Logger.error("DCH04", e.getMessage());
+		}
 	}
 }

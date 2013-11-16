@@ -7,7 +7,7 @@ import javax.naming.*;
 public class MensajeAsincronico {
 	public static void enviarObjeto(String url, String queueName, String user, String password, Serializable objeto) throws Exception {
 
-		Logger.info("Enviando mensaje asincronico:" +
+		System.out.println("Enviando mensaje asincronico:" +
 				" url: " + url + " queueName: " + queueName + " user: " + user + " password: " + password);
 
 		Connection connection = null;
