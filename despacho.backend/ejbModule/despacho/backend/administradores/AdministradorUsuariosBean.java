@@ -21,7 +21,7 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 	@Override
 	public List<Usuario> listar() {
 		@SuppressWarnings("unchecked")
-		List<Usuario> usuarios = this.em.createQuery("FROM USUARIOS").getResultList();
+		List<Usuario> usuarios = this.em.createQuery(" FROM Usuario").getResultList();
 		return usuarios;
 	}
 	

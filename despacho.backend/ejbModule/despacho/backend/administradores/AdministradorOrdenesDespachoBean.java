@@ -22,7 +22,7 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 	@Override
 	public List<OrdenDespacho> listar() {
 		@SuppressWarnings("unchecked")
-		List<OrdenDespacho> ordenesDespacho = this.em.createQuery("FROM ORDENES_DESPACHO").getResultList();
+		List<OrdenDespacho> ordenesDespacho = this.em.createQuery(" FROM OrdenDespacho").getResultList();
 		return ordenesDespacho;
 	}
 	
