@@ -8,5 +8,6 @@
 package despacho.backend.servicios;
 
 public interface ServicioArticulosBean extends java.rmi.Remote {
+    public java.lang.Boolean recepcionArticulosParaDespachar(despacho.backend.servicios.SolicitudArticuloVO arg0) throws java.rmi.RemoteException;
     public void ingresarArticulo(despacho.backend.servicios.ArticuloVO arg0) throws java.rmi.RemoteException;
 }

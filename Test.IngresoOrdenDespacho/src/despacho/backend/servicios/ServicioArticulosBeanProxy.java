@@ -44,6 +44,12 @@ public class ServicioArticulosBeanProxy implements despacho.backend.servicios.Se
     return servicioArticulosBean;
   }
   
+  public java.lang.Boolean recepcionArticulosParaDespachar(despacho.backend.servicios.SolicitudArticuloVO arg0) throws java.rmi.RemoteException{
+    if (servicioArticulosBean == null)
+      _initServicioArticulosBeanProxy();
+    return servicioArticulosBean.recepcionArticulosParaDespachar(arg0);
+  }
+  
   public void ingresarArticulo(despacho.backend.servicios.ArticuloVO arg0) throws java.rmi.RemoteException{
     if (servicioArticulosBean == null)
       _initServicioArticulosBeanProxy();

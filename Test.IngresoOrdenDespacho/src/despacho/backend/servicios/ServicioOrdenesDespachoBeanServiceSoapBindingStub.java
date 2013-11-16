@@ -35,8 +35,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("completarOrdenDespacho");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        param.setOmittable(true);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
@@ -181,7 +180,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
 }
     }
 
-    public void completarOrdenDespacho(java.lang.String arg0) throws java.rmi.RemoteException {
+    public void completarOrdenDespacho(int arg0) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -197,7 +196,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new java.lang.Integer(arg0)});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;

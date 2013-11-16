@@ -50,7 +50,7 @@ public class ServicioOrdenesDespachoProxy implements despacho.backend.servicios.
     servicioOrdenesDespacho.ingresarOrdenDespacho(arg0);
   }
   
-  public void completarOrdenDespacho(java.lang.String arg0) throws java.rmi.RemoteException{
+  public void completarOrdenDespacho(int arg0) throws java.rmi.RemoteException{
     if (servicioOrdenesDespacho == null)
       _initServicioOrdenesDespachoProxy();
     servicioOrdenesDespacho.completarOrdenDespacho(arg0);

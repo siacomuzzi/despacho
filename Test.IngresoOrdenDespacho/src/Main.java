@@ -20,7 +20,7 @@ public class Main {
 			articulo1.setCategoria("Electrodomesticos");
 			articulo1.setDescripcion("Que heladera!");
 			articulo1.setFoto("http://lalala.com/helader.png");
-			articulo1.setIdarticulo("DEPOC2");
+			articulo1.setIdarticulo("DEPOC1");
 			articulo1.setIdDeposito("DepositoC");
 			articulo1.setMarca("Whirlpool");
 			articulo1.setNombre("Heladera");
@@ -28,13 +28,13 @@ public class Main {
 			articulo1.setPrecio(9999);
 			articulo1.setStock(10);
 			
-			articulosPort.ingresarArticulo(articulo1);
+			//articulosPort.ingresarArticulo(articulo1);
 			
 			// DCH02.Recepción y Procesamiento de Orden de Despacho
 			ServicioOrdenesDespacho ordenesDespachoPort = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoPort();
 			
 			ItemSolicitudArticuloVO solicitudArticulo1 = new ItemSolicitudArticuloVO();
-			solicitudArticulo1.setIdArticulo("DEPOC2");
+			solicitudArticulo1.setIdArticulo("DEPOC1");
 			solicitudArticulo1.setCantSolicitada(2);
 			
 			OrdenDespachoVO ordenDespacho = new OrdenDespachoVO();

@@ -93,7 +93,7 @@ public class ServicioArticulosBean implements ServicioArticulos {
 					// Proceso la orden que contenga el articulo en cuestion
 					for (SolicitudArticulo solicitudArticuloOrden : ordenPendiente.getArticulos()) {
 						
-						if (itemSolicitud.getIdArticulo() == solicitudArticuloOrden.getArticulo().getIdArticulo()) {
+						if (itemSolicitud.getIdArticulo().equalsIgnoreCase(solicitudArticuloOrden.getArticulo().getIdArticulo())) {
 							
 							if (solicitudArticuloOrden.getCantidad() <= cantidad) {
 								
