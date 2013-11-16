@@ -6,15 +6,15 @@ import vo.MensajeLogVO;
 
 public class Logger {
 	public static void error(String evento, String message) {
-		logMessage(message, "[ERROR] " + message);
+		logMessage(evento, "[ERROR] " + message);
 	}
 	
 	public static void info(String evento, String message) {
-		logMessage(message, "[INFO] " + message);
+		logMessage(evento, "[INFO] " + message);
 	}
 	
 	public static void warning(String evento, String message) {
-		logMessage(message, "[WARNING] " + message);
+		logMessage(evento, "[WARNING] " + message);
 	}
 	
 	private static void logMessage(String evento, String message) {

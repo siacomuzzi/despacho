@@ -56,13 +56,12 @@ public class BusinessDelegate implements ServicioArticulos {
 	
 	@Override
 	public void ingresarArticulo(ArticuloVO articulo) {
-		// TODO Auto-generated method stub
+		servicioArticulos.ingresarArticulo(articulo);
 		
 	}
 
 	@Override
 	public void recepcionArticulosParaDespachar() {
-		// TODO Auto-generated method stub
 		servicioArticulos.recepcionArticulosParaDespachar();
 	}
 

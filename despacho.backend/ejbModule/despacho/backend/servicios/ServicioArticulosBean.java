@@ -72,7 +72,7 @@ public class ServicioArticulosBean implements ServicioArticulos {
 		try {
 			Logger.info("DCH03", "");
 			
-			// TODO
+			// TODO: implementar DCH03
 			
 			Logger.info("DCH03", "Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
 		}
