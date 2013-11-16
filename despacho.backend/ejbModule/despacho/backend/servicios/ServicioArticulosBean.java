@@ -65,4 +65,20 @@ public class ServicioArticulosBean implements ServicioArticulos {
 			Logger.error(e.getMessage());
 		}
 	}
+	
+	@Override
+	// DCH03.Recepción y Procesamiento de Artículos a Despachar
+	public void recepcionArticulosParaDespachar() {
+		try {
+			Logger.info("");
+			
+			// TODO
+			
+			Logger.info("Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			Logger.error(e.getMessage());
+		}
+	}
 }

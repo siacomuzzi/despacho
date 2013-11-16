@@ -7,4 +7,6 @@ import ar.edu.uade.integracion.VO.ArticuloVO;
 @Remote
 public interface ServicioArticulos {
 	void ingresarArticulo(ArticuloVO articulo);
+	
+	void recepcionArticulosParaDespachar();
 }
