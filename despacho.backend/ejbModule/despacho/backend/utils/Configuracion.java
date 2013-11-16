@@ -42,7 +42,7 @@ public class Configuracion {
 		configuracion.put("CodigoModuloParaLog", "999");
 		
 		// Configuracion de Auditoria
-		configuracion.put("logAsincrono", "true");
+		configuracion.put("logAsincrono", "");
 		configuracion.put("Auditoria-LoguearEventoWS-Url", "https://192.168.X.XXX/loguearEvento?wsdl");
 		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
 		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "loguearEventosQueue");

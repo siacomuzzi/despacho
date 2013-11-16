@@ -3,8 +3,9 @@
 	<name>despacho.backendEAR</name>
 	<comment></comment>
 	<projects>
-		<project>despacho.backend</project>
 		<project>integracion</project>
+		<project>despacho.backend.api</project>
+		<project>despacho.backend</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
