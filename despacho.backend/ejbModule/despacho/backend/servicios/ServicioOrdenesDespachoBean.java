@@ -35,7 +35,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				return;
 			}
 			
-			Logger.info("Nueva Orden de despacho: " + ordenDespacho.getCodOrden());
+			Logger.info("Nueva Orden de despacho con codigo: " + ordenDespacho.getCodOrden());
 			
 			List<SolicitudArticulo> articulos = new ArrayList<SolicitudArticulo>();
 			
@@ -87,6 +87,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					solicitud.setArticulo(articulo);
 					solicitud.setFecha(solicitudDeposito.getFecha());
 					solicitud.setCodigoOrden(ordenDespacho.getCodOrden());
+					solicitud.setIdDeposito(nombreDeposito);
 					
 					articulos.add(solicitud);
 				}

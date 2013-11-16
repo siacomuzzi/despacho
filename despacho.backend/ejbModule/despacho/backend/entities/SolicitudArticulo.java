@@ -17,6 +17,7 @@ public class SolicitudArticulo {
 	private int cantidad;
 	private String estado;
 	private int codigoOrden;
+	private String idDeposito;
 	
 	public SolicitudArticulo() {
 	}
@@ -69,5 +70,13 @@ public class SolicitudArticulo {
 
 	public void setCodigoOrden(int codigoOrden) {
 		this.codigoOrden = codigoOrden;
+	}
+
+	public String getIdDeposito() {
+		return idDeposito;
+	}
+
+	public void setIdDeposito(String idDeposito) {
+		this.idDeposito = idDeposito;
 	}
 }
