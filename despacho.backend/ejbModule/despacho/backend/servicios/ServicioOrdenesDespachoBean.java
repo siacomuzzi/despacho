@@ -37,7 +37,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			
 			Logger.info("Nueva Orden de despacho: " + ordenDespacho.getCodOrden());
 			
-			ArrayList<SolicitudArticulo> articulos = new ArrayList<SolicitudArticulo>();
+			List<SolicitudArticulo> articulos = new ArrayList<SolicitudArticulo>();
 			
 			// Por cada articulo de la orden, se debe obtener el Deposito que lo administra y solicitarlo asincronicamente
 			List<ItemSolicitudArticuloVO> articulosOrden = ordenDespacho.getArticulos();
@@ -86,6 +86,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					solicitud.setCantidad(articuloOrden.getCantSolicitada());
 					solicitud.setArticulo(articulo);
 					solicitud.setFecha(solicitudDeposito.getFecha());
+					solicitud.setCodigoOrden(ordenDespacho.getCodOrden());
 					this.administradorArticulos.guardarSolicitud(solicitud);
 					
 					articulos.add(solicitud);

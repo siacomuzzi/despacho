@@ -12,7 +12,7 @@ public class OrdenDespacho {
 	private String nombreUsuario;
 	private int codVenta;
 	private int codPortal;
-	private ArrayList<SolicitudArticulo> articulos;
+	private List<SolicitudArticulo> articulos;
 	private String estado;
 	private Date fecha;
 	
@@ -53,12 +53,12 @@ public class OrdenDespacho {
 		this.codPortal = codPortal;
 	}
 
-	@OneToMany
-	public ArrayList<SolicitudArticulo> getArticulos() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "codigoOrden")
+	public List<SolicitudArticulo> getArticulos() {
 		return articulos;
 	}
 
-	public void setArticulos(ArrayList<SolicitudArticulo> articulos) {
+	public void setArticulos(List<SolicitudArticulo> articulos) {
 		this.articulos = articulos;
 	}
 

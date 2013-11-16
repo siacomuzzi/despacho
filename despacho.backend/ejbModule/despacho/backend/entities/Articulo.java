@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -101,7 +102,8 @@ public class Articulo {
 		this.stock = stock;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "articulo")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "articulo")
 	public List<ArticuloAtributo> getAtributos() {
 		return atributos;
 	}
