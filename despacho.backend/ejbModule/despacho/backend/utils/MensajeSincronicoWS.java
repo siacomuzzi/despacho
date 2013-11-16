@@ -19,8 +19,8 @@ public class MensajeSincronicoWS {
 		String url = Configuracion.getInstancia().get().get(nombrePortal + "-OrdenDespachoListaWS-Url");
 		
 		try {
-			// TODO: ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort(new URL(url));
-			//port.cambioEstadoEntrega(0, "");
+			ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort(new URL(url));
+			port.cambioEstadoEntrega(orden.getCodOrden(), orden.getEstado());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

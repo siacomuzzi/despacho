@@ -125,11 +125,13 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				return;
 			}
 			
+			orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
+			
 			// Informar a los portales que todos los articulos de una Orden de Despacho estén listos para Entrega
 			for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
 				Logger.info("DCH04", "Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
 				
-				MensajeSincronicoWS.informarOrdenListaEntrega(null, nombrePortal); // TODO: ver que objeto enviar
+				MensajeSincronicoWS.informarOrdenListaEntrega(orden, nombrePortal);
 			}
 			
 			// Informar en comunicación sincrónica (REST) al módulo Logística
@@ -137,7 +139,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			
 			EstadoDespachoVO estadoDespacho = new EstadoDespachoVO();
 			estadoDespacho.setCodigoOD(codigo);
-			estadoDespacho.setEstado(EstadoOrdenDespacho.ENTREGADA);
+			estadoDespacho.setEstado(orden.getEstado());
 			estadoDespacho.setCodigoSalida(0);
 			estadoDespacho.setErrorDescripcion("");
 			
@@ -146,7 +148,6 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					estadoDespacho);
 			
 			// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
-			orden.setEstado(EstadoOrdenDespacho.ENTREGADA);
 			this.administradorOrdenesDespacho.actualizar(orden);
 			
 			Logger.info("DCH04", "Listo (DCH04 - Envío Cambio de Estado de Despacho (Entrega))");
