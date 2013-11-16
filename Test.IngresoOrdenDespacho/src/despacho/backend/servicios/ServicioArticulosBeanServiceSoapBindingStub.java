@@ -1,5 +1,5 @@
 /**
- * ServicioOrdenesDespachoBeanServiceSoapBindingStub.java
+ * ServicioArticulosBeanServiceSoapBindingStub.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,7 +7,7 @@
 
 package despacho.backend.servicios;
 
-public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apache.axis.client.Stub implements despacho.backend.servicios.ServicioOrdenesDespacho {
+public class ServicioArticulosBeanServiceSoapBindingStub extends org.apache.axis.client.Stub implements despacho.backend.servicios.ServicioArticulosBean {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
     private java.util.Vector cachedSerFactories = new java.util.Vector();
@@ -16,7 +16,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[2];
+        _operations = new org.apache.axis.description.OperationDesc[1];
         _initOperationDesc1();
     }
 
@@ -24,8 +24,8 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("ingresarOrdenDespacho");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ordenDespachoVO"), despacho.backend.servicios.OrdenDespachoVO.class, false, false);
+        oper.setName("ingresarArticulo");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.backend.despacho/", "articuloVO"), despacho.backend.servicios.ArticuloVO.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
@@ -33,28 +33,18 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("completarOrdenDespacho");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "arg0"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        param.setOmittable(true);
-        oper.addParameter(param);
-        oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[1] = oper;
-
     }
 
-    public ServicioOrdenesDespachoBeanServiceSoapBindingStub() throws org.apache.axis.AxisFault {
+    public ServicioArticulosBeanServiceSoapBindingStub() throws org.apache.axis.AxisFault {
          this(null);
     }
 
-    public ServicioOrdenesDespachoBeanServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public ServicioArticulosBeanServiceSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
          this(service);
          super.cachedEndpoint = endpointURL;
     }
 
-    public ServicioOrdenesDespachoBeanServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
+    public ServicioArticulosBeanServiceSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
         if (service == null) {
             super.service = new org.apache.axis.client.Service();
         } else {
@@ -74,16 +64,16 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
             java.lang.Class simpledf = org.apache.axis.encoding.ser.SimpleDeserializerFactory.class;
             java.lang.Class simplelistsf = org.apache.axis.encoding.ser.SimpleListSerializerFactory.class;
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
-            qName = new javax.xml.namespace.QName("http://servicios.backend.despacho/", "itemSolicitudArticuloVO");
+            qName = new javax.xml.namespace.QName("http://servicios.backend.despacho/", "articuloVO");
             cachedSerQNames.add(qName);
-            cls = despacho.backend.servicios.ItemSolicitudArticuloVO.class;
+            cls = despacho.backend.servicios.ArticuloVO.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ordenDespachoVO");
+            qName = new javax.xml.namespace.QName("http://servicios.backend.despacho/", "atributoVO");
             cachedSerQNames.add(qName);
-            cls = despacho.backend.servicios.OrdenDespachoVO.class;
+            cls = despacho.backend.servicios.AtributoVO.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -154,7 +144,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
         }
     }
 
-    public void ingresarOrdenDespacho(despacho.backend.servicios.OrdenDespachoVO arg0) throws java.rmi.RemoteException {
+    public void ingresarArticulo(despacho.backend.servicios.ArticuloVO arg0) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -166,34 +156,7 @@ public class ServicioOrdenesDespachoBeanServiceSoapBindingStub extends org.apach
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ingresarOrdenDespacho"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {arg0});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        extractAttachments(_call);
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
-    }
-
-    public void completarOrdenDespacho(java.lang.String arg0) throws java.rmi.RemoteException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[1]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "completarOrdenDespacho"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ingresarArticulo"));
 
         setRequestHeaders(_call);
         setAttachments(_call);

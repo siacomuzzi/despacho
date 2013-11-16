@@ -1,5 +1,5 @@
 /**
- * Deposito.java
+ * AtributoVO.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,20 +7,24 @@
 
 package despacho.backend.servicios;
 
-public class Deposito  implements java.io.Serializable {
+public class AtributoVO  implements java.io.Serializable {
     private java.lang.String nombre;
 
-    public Deposito() {
+    private java.lang.String valor;
+
+    public AtributoVO() {
     }
 
-    public Deposito(
-           java.lang.String nombre) {
+    public AtributoVO(
+           java.lang.String nombre,
+           java.lang.String valor) {
            this.nombre = nombre;
+           this.valor = valor;
     }
 
 
     /**
-     * Gets the nombre value for this Deposito.
+     * Gets the nombre value for this AtributoVO.
      * 
      * @return nombre
      */
@@ -30,7 +34,7 @@ public class Deposito  implements java.io.Serializable {
 
 
     /**
-     * Sets the nombre value for this Deposito.
+     * Sets the nombre value for this AtributoVO.
      * 
      * @param nombre
      */
@@ -38,10 +42,30 @@ public class Deposito  implements java.io.Serializable {
         this.nombre = nombre;
     }
 
+
+    /**
+     * Gets the valor value for this AtributoVO.
+     * 
+     * @return valor
+     */
+    public java.lang.String getValor() {
+        return valor;
+    }
+
+
+    /**
+     * Sets the valor value for this AtributoVO.
+     * 
+     * @param valor
+     */
+    public void setValor(java.lang.String valor) {
+        this.valor = valor;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Deposito)) return false;
-        Deposito other = (Deposito) obj;
+        if (!(obj instanceof AtributoVO)) return false;
+        AtributoVO other = (AtributoVO) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -52,7 +76,10 @@ public class Deposito  implements java.io.Serializable {
         _equals = true && 
             ((this.nombre==null && other.getNombre()==null) || 
              (this.nombre!=null &&
-              this.nombre.equals(other.getNombre())));
+              this.nombre.equals(other.getNombre()))) &&
+            ((this.valor==null && other.getValor()==null) || 
+             (this.valor!=null &&
+              this.valor.equals(other.getValor())));
         __equalsCalc = null;
         return _equals;
     }
@@ -67,19 +94,29 @@ public class Deposito  implements java.io.Serializable {
         if (getNombre() != null) {
             _hashCode += getNombre().hashCode();
         }
+        if (getValor() != null) {
+            _hashCode += getValor().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Deposito.class, true);
+        new org.apache.axis.description.TypeDesc(AtributoVO.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "deposito"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "atributoVO"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("nombre");
         elemField.setXmlName(new javax.xml.namespace.QName("", "nombre"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("valor");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "valor"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

@@ -1,29 +1,50 @@
 import despacho.backend.servicios.*;
 
-
 public class Main {
 
 	public static void main(String[] args) {
 		try {
-			// DCH02.Recepción y Procesamiento de Orden de Despacho (desde LOGISTICA)
-			ServicioOrdenesDespachoBean port = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoBeanPort();
+			// DCH01.Recibir nuevo Artículo
+			ServicioArticulosBean articulosPort = new ServicioArticulosBeanServiceLocator().getServicioArticulosBeanPort();
 			
-			ArticuloOrdenDespacho articulo1 = new ArticuloOrdenDespacho();
-			articulo1.setCodigo("articulo01");
+			AtributoVO atributo11 = new AtributoVO();
+			atributo11.setNombre("Peso");
+			atributo11.setValor("85 kg");
 			
-			ArticuloOrdenDespacho articulo2 = new ArticuloOrdenDespacho();
-			articulo2.setCodigo("articulo02");
+			AtributoVO atributo12 = new AtributoVO();
+			atributo12.setNombre("Capacidad");
+			atributo12.setValor("500 lts");
 			
-			OrdenDespacho orden = new OrdenDespacho();
-			orden.setCodigo("orden-despacho-01");
-			orden.setArticulos(new ArticuloOrdenDespacho[] { articulo1, articulo2 });
+			ArticuloVO articulo1 = new ArticuloVO();
+			articulo1.setAtributos(new AtributoVO[] { atributo11, atributo12 });;
+			articulo1.setCategoria("Electrodomesticos");
+			articulo1.setDescripcion("Que heladera!");
+			articulo1.setFoto("http://lalala.com/helader.png");
+			articulo1.setIdarticulo("articulo-01");
+			articulo1.setIdDeposito("DepositoA");
+			articulo1.setMarca("Whirlpool");
+			articulo1.setNombre("Heladera");
+			articulo1.setOrigen("Brasil");
+			articulo1.setPrecio(9999);
+			articulo1.setStock(10);
 			
-			port.ingresarOrdenDespacho(orden);
+			articulosPort.ingresarArticulo(articulo1);
 			
-			// ASSERTS:
-			//	- Cada articulo de la orden se envio a la queue del DEPOSITO correspondiente
-			//	- La orden se guardo en la DB con el estado "pendientes de entrega"
-			//	- Se debe registrar la solicitud por Deposito
+			// DCH02.Recepción y Procesamiento de Orden de Despacho
+			ServicioOrdenesDespacho ordenesDespachoPort = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoPort();
+			
+			ItemSolicitudArticuloVO solicitudArticulo1 = new ItemSolicitudArticuloVO();
+			solicitudArticulo1.setIdArticulo("articulo-01");
+			solicitudArticulo1.setCantSolicitada(2);
+			
+			OrdenDespachoVO ordenDespacho = new OrdenDespachoVO();
+			ordenDespacho.setArticulos(new ItemSolicitudArticuloVO[] { solicitudArticulo1 });
+			ordenDespacho.setCodOrden(1);
+			ordenDespacho.setCodPortal(11);
+			ordenDespacho.setCodVenta(111);
+			ordenDespacho.setNombreUsuario("jperez");
+			
+			ordenesDespachoPort.ingresarOrdenDespacho(ordenDespacho);
 			
 			System.out.println("LISTO!");
 		} catch (Exception e) {

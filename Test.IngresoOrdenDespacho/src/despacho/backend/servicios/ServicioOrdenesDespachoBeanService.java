@@ -8,9 +8,9 @@
 package despacho.backend.servicios;
 
 public interface ServicioOrdenesDespachoBeanService extends javax.xml.rpc.Service {
-    public java.lang.String getServicioOrdenesDespachoBeanPortAddress();
+    public java.lang.String getServicioOrdenesDespachoPortAddress();
 
-    public despacho.backend.servicios.ServicioOrdenesDespachoBean getServicioOrdenesDespachoBeanPort() throws javax.xml.rpc.ServiceException;
+    public despacho.backend.servicios.ServicioOrdenesDespacho getServicioOrdenesDespachoPort() throws javax.xml.rpc.ServiceException;
 
-    public despacho.backend.servicios.ServicioOrdenesDespachoBean getServicioOrdenesDespachoBeanPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+    public despacho.backend.servicios.ServicioOrdenesDespacho getServicioOrdenesDespachoPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }

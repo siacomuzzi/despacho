@@ -21,39 +21,39 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for ServicioOrdenesDespachoBeanPort
-    private java.lang.String ServicioOrdenesDespachoBeanPort_address = "http://localhost:8080/despacho.backend/ServicioOrdenesDespachoBean";
+    // Use to get a proxy class for ServicioOrdenesDespachoPort
+    private java.lang.String ServicioOrdenesDespachoPort_address = "http://localhost:8080/despacho.backend/ServicioOrdenesDespacho";
 
-    public java.lang.String getServicioOrdenesDespachoBeanPortAddress() {
-        return ServicioOrdenesDespachoBeanPort_address;
+    public java.lang.String getServicioOrdenesDespachoPortAddress() {
+        return ServicioOrdenesDespachoPort_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String ServicioOrdenesDespachoBeanPortWSDDServiceName = "ServicioOrdenesDespachoBeanPort";
+    private java.lang.String ServicioOrdenesDespachoPortWSDDServiceName = "ServicioOrdenesDespachoPort";
 
-    public java.lang.String getServicioOrdenesDespachoBeanPortWSDDServiceName() {
-        return ServicioOrdenesDespachoBeanPortWSDDServiceName;
+    public java.lang.String getServicioOrdenesDespachoPortWSDDServiceName() {
+        return ServicioOrdenesDespachoPortWSDDServiceName;
     }
 
-    public void setServicioOrdenesDespachoBeanPortWSDDServiceName(java.lang.String name) {
-        ServicioOrdenesDespachoBeanPortWSDDServiceName = name;
+    public void setServicioOrdenesDespachoPortWSDDServiceName(java.lang.String name) {
+        ServicioOrdenesDespachoPortWSDDServiceName = name;
     }
 
-    public despacho.backend.servicios.ServicioOrdenesDespachoBean getServicioOrdenesDespachoBeanPort() throws javax.xml.rpc.ServiceException {
+    public despacho.backend.servicios.ServicioOrdenesDespacho getServicioOrdenesDespachoPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(ServicioOrdenesDespachoBeanPort_address);
+            endpoint = new java.net.URL(ServicioOrdenesDespachoPort_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getServicioOrdenesDespachoBeanPort(endpoint);
+        return getServicioOrdenesDespachoPort(endpoint);
     }
 
-    public despacho.backend.servicios.ServicioOrdenesDespachoBean getServicioOrdenesDespachoBeanPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public despacho.backend.servicios.ServicioOrdenesDespacho getServicioOrdenesDespachoPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
             despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub _stub = new despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub(portAddress, this);
-            _stub.setPortName(getServicioOrdenesDespachoBeanPortWSDDServiceName());
+            _stub.setPortName(getServicioOrdenesDespachoPortWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -61,8 +61,8 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
         }
     }
 
-    public void setServicioOrdenesDespachoBeanPortEndpointAddress(java.lang.String address) {
-        ServicioOrdenesDespachoBeanPort_address = address;
+    public void setServicioOrdenesDespachoPortEndpointAddress(java.lang.String address) {
+        ServicioOrdenesDespachoPort_address = address;
     }
 
     /**
@@ -72,9 +72,9 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (despacho.backend.servicios.ServicioOrdenesDespachoBean.class.isAssignableFrom(serviceEndpointInterface)) {
-                despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub _stub = new despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub(new java.net.URL(ServicioOrdenesDespachoBeanPort_address), this);
-                _stub.setPortName(getServicioOrdenesDespachoBeanPortWSDDServiceName());
+            if (despacho.backend.servicios.ServicioOrdenesDespacho.class.isAssignableFrom(serviceEndpointInterface)) {
+                despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub _stub = new despacho.backend.servicios.ServicioOrdenesDespachoBeanServiceSoapBindingStub(new java.net.URL(ServicioOrdenesDespachoPort_address), this);
+                _stub.setPortName(getServicioOrdenesDespachoPortWSDDServiceName());
                 return _stub;
             }
         }
@@ -94,8 +94,8 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("ServicioOrdenesDespachoBeanPort".equals(inputPortName)) {
-            return getServicioOrdenesDespachoBeanPort();
+        if ("ServicioOrdenesDespachoPort".equals(inputPortName)) {
+            return getServicioOrdenesDespachoPort();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -113,7 +113,7 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
     public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ServicioOrdenesDespachoBeanPort"));
+            ports.add(new javax.xml.namespace.QName("http://servicios.backend.despacho/", "ServicioOrdenesDespachoPort"));
         }
         return ports.iterator();
     }
@@ -123,8 +123,8 @@ public class ServicioOrdenesDespachoBeanServiceLocator extends org.apache.axis.c
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("ServicioOrdenesDespachoBeanPort".equals(portName)) {
-            setServicioOrdenesDespachoBeanPortEndpointAddress(address);
+if ("ServicioOrdenesDespachoPort".equals(portName)) {
+            setServicioOrdenesDespachoPortEndpointAddress(address);
         }
         else 
 { // Unknown Port Name
