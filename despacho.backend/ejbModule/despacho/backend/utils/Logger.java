@@ -1,8 +1,8 @@
 package despacho.backend.utils;
 
+import java.util.Calendar;
 import java.util.Date;
-
-import vo.MensajeLogVO;
+import java.util.GregorianCalendar;
 
 public class Logger {
 	public static void error(String evento, String message) {
@@ -25,15 +25,15 @@ public class Logger {
 			String modulo = Configuracion.getInstancia().get().get("NombreDespacho");
 			String logAsincrono = Configuracion.getInstancia().get().get("logAsincrono");
 			
-			MensajeLogVO mensajeLog = new MensajeLogVO();
-			mensajeLog.setCodModulo(Integer.parseInt(logCodigoModulo));
-			mensajeLog.setModulo(modulo);
-			mensajeLog.setEvento(evento);
-			mensajeLog.setFecha(new Date());
-			mensajeLog.setTipo(error ? 1 : 0);
-			
 			if (logAsincrono == "true") {
 				// Log por queue
+				vo.MensajeLogVO mensajeLog = new vo.MensajeLogVO();
+				mensajeLog.setCodModulo(Integer.parseInt(logCodigoModulo));
+				mensajeLog.setModulo(modulo);
+				mensajeLog.setEvento(evento);
+				mensajeLog.setFecha(new Date());
+				mensajeLog.setTipo(error ? 1 : 0);
+				
 				MensajeAsincronico.enviarObjeto(
 						Configuracion.getInstancia().get().get("Auditoria-LoguearEventoQueue-Url"),
 						Configuracion.getInstancia().get().get("Auditoria-LoguearEventoQueue-Nombre"), 
@@ -43,6 +43,15 @@ public class Logger {
 			}
 			else if (logAsincrono == "false") {
 				// Log por web service
+				sessionBeans.MensajeLogVO mensajeLog = new sessionBeans.MensajeLogVO();
+				Calendar calendar = new GregorianCalendar();
+				calendar.setTime(new Date());
+				mensajeLog.setCodModulo(Integer.parseInt(logCodigoModulo));
+				mensajeLog.setModulo(modulo);
+				mensajeLog.setEvento(evento);
+				mensajeLog.setFecha(calendar);
+				mensajeLog.setTipo(error ? 1 : 0);
+				
 				MensajeSincronicoWS.loguearEvento(mensajeLog);
 			}
 		}

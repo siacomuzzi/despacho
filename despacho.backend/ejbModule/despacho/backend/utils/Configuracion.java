@@ -32,9 +32,10 @@ public class Configuracion {
 		configuracion.put("DepositoC-SolicitarArticuloQueue-Password", "jms2013");
 		
 		// Configuracion de Portales
-		configuracion.put("Portales", "PortalA;PortalB");
-		configuracion.put("PortalA-OrdenDespachoListaWS-Url", "https://192.168.X.XXX/ordenDespachoLista?wsdl");
-		configuracion.put("PortalB-OrdenDespachoListaWS-Url", "https://192.168.Y.YYY/ordenDespachoLista?wsdl");
+		configuracion.put("Portales", "PortalA;PortalB;PortalC");
+		configuracion.put("PortalA-OrdenDespachoListaWS-Url", "http://192.168.1.112/ordenDespachoLista?wsdl");
+		configuracion.put("PortalB-OrdenDespachoListaWS-Url", "http://192.168.Y.YYY/ordenDespachoLista?wsdl");
+		configuracion.put("PortalC-OrdenDespachoListaWS-Url", "http://192.168.1.108Y/ordenDespachoLista?wsdl");
 		
 		// Configuracion de Despacho
 		configuracion.put("NombreDespacho", "DespachoA");
@@ -42,7 +43,7 @@ public class Configuracion {
 		
 		// Configuracion de Auditoria
 		configuracion.put("logAsincrono", "");
-		configuracion.put("Auditoria-LoguearEventoWS-Url", "https://192.168.X.XXX/loguearEvento?wsdl");
+		configuracion.put("Auditoria-LoguearEventoWS-Url", "http://192.168.1.124:8080/IntegracionAplicaciones/AdminAuditoriaBean");
 		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
 		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "loguearEventosQueue");
 		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "jms");

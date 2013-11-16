@@ -2,15 +2,11 @@ package despacho.backend.utils;
 
 import java.net.URL;
 
-
-
-
-
-import vo.MensajeLogVO;
+import sessionBeans.AdminAuditoriaBean;
+import sessionBeans.AdminAuditoriaBeanServiceLocator;
+import sessionBeans.MensajeLogVO;
 import ws.ObtenerEstado;
 import ws.ObtenerEstadoServiceLocator;
-//import ws.ObtenerEstado;
-//import ws.ObtenerEstadoServiceLocator;
 import despacho.backend.entities.OrdenDespacho;
 
 public class MensajeSincronicoWS {
@@ -31,7 +27,8 @@ public class MensajeSincronicoWS {
 		String url = Configuracion.getInstancia().get().get("Auditoria-LoguearEventoWS-Url");
 		
 		try {
-			// TODO: loguear evento por WS
+			AdminAuditoriaBean port = new AdminAuditoriaBeanServiceLocator().getAdminAuditoriaBeanPort(new URL(url));
+			port.recepcionarInformes(mensajeLog);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
