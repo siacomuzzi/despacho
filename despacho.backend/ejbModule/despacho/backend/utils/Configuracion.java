@@ -7,7 +7,7 @@ public class Configuracion {
 	private static Configuracion instance = null;
 	
 	public static final String IngresoOrdenDespachoServiceName = "ServicioOrdenesDespacho";
-	public static final String IngresoArticuloQueueName = "queue/recepcionDepositoArticulo";
+	public static final String IngresoArticuloQueueName = "queue/recepcionDepositoArticulos";
 	
 	private Configuracion() {
 		// Configuracion de Depositos
