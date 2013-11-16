@@ -29,7 +29,7 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 	@Override
 	public List<OrdenDespacho> listarPorEstado(String estado) {
 		@SuppressWarnings("unchecked")
-		List<OrdenDespacho> ordenesDespacho = this.em.createQuery("FROM ORDENES_DESPACHO WHERE estado = '" + estado + "' ORDER BY fecha").getResultList();
+		List<OrdenDespacho> ordenesDespacho = this.em.createQuery("FROM ORDEN_DESPACHO WHERE estado = '" + estado + "' ORDER BY fecha").getResultList();
 		return ordenesDespacho;
 	}
 	
