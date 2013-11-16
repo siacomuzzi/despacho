@@ -20,8 +20,8 @@ public class Main {
 			articulo1.setCategoria("Electrodomesticos");
 			articulo1.setDescripcion("Que heladera!");
 			articulo1.setFoto("http://lalala.com/helader.png");
-			articulo1.setIdarticulo("articulo-01");
-			articulo1.setIdDeposito("DepositoA");
+			articulo1.setIdarticulo("DEPOC2");
+			articulo1.setIdDeposito("DepositoC");
 			articulo1.setMarca("Whirlpool");
 			articulo1.setNombre("Heladera");
 			articulo1.setOrigen("Brasil");
@@ -34,7 +34,7 @@ public class Main {
 			ServicioOrdenesDespacho ordenesDespachoPort = new ServicioOrdenesDespachoBeanServiceLocator().getServicioOrdenesDespachoPort();
 			
 			ItemSolicitudArticuloVO solicitudArticulo1 = new ItemSolicitudArticuloVO();
-			solicitudArticulo1.setIdArticulo("articulo-01");
+			solicitudArticulo1.setIdArticulo("DEPOC2");
 			solicitudArticulo1.setCantSolicitada(2);
 			
 			OrdenDespachoVO ordenDespacho = new OrdenDespachoVO();
