@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,7 @@ public class SolicitudArticulo {
 	
 	private String id;
 	private Date fecha;
-	private String codigoArticulo;
+	private Articulo articulo;
 	private int cantidad;
 	private String estado;
 	
@@ -36,12 +37,13 @@ public class SolicitudArticulo {
 		this.fecha = fecha;
 	}
 
-	public String getCodigoArticulo() {
-		return codigoArticulo;
+	@ManyToOne
+	public Articulo getArticulo() {
+		return articulo;
 	}
 
-	public void setCodigoArticulo(String codigoArticulo) {
-		this.codigoArticulo = codigoArticulo;
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
 	}
 
 	public int getCantidad() {

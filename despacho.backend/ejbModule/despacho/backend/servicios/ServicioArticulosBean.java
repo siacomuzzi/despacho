@@ -5,21 +5,26 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 import ar.edu.uade.integracion.VO.ArticuloVO;
 import ar.edu.uade.integracion.VO.AtributoVO;
 import despacho.backend.administradores.AdministradorArticulos;
 import despacho.backend.entities.Articulo;
 import despacho.backend.entities.ArticuloAtributo;
+import despacho.backend.utils.Configuracion;
 import despacho.backend.utils.Logger;
 
 @Stateless
+@WebService(name = Configuracion.IngresoOrdenDespachoServiceName)
 public class ServicioArticulosBean implements ServicioArticulos {
 
 	@EJB
 	private AdministradorArticulos administradorArticulos;
 	
 	@Override
+	@WebMethod
 	// DCH01.Recibir nuevo Artículo
 	public void ingresarArticulo(ArticuloVO articulo) {
 		try {

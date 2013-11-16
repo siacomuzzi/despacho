@@ -53,6 +53,7 @@ public class OrdenDespacho {
 		this.codPortal = codPortal;
 	}
 
+	@OneToMany
 	public ArrayList<SolicitudArticulo> getArticulos() {
 		return articulos;
 	}

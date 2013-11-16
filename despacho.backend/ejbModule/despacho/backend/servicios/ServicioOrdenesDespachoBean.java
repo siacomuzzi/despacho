@@ -84,7 +84,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 					solicitud.setId(idSolicitudArticulo);
 					solicitud.setEstado(EstadoSolicitudArticulo.SOLICITADO);
 					solicitud.setCantidad(articuloOrden.getCantSolicitada());
-					solicitud.setCodigoArticulo(articuloOrden.getIdArticulo());
+					solicitud.setArticulo(articulo);
 					solicitud.setFecha(solicitudDeposito.getFecha());
 					this.administradorArticulos.guardarSolicitud(solicitud);
 					

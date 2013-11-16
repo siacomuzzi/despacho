@@ -101,7 +101,7 @@ public class Articulo {
 		this.stock = stock;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="articulo")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "articulo")
 	public List<ArticuloAtributo> getAtributos() {
 		return atributos;
 	}
