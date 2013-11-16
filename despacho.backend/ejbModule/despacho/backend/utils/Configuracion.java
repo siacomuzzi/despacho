@@ -3,7 +3,6 @@ package despacho.backend.utils;
 import java.util.*;
 
 public class Configuracion {
-	// TODO: manipular toda la informacion de configuracion desde una pagina web
 	private static Map<String, String> configuracion = new HashMap<String, String>();
 	private static Configuracion instance = null;
 	

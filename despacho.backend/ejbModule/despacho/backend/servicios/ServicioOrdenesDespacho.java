@@ -8,5 +8,5 @@ import ar.edu.uade.integracion.VO.OrdenDespachoVO;
 public interface ServicioOrdenesDespacho {
 	void ingresarOrdenDespacho(OrdenDespachoVO ordenDespacho);
 	
-	void completarOrdenDespacho(String codigo);
+	void completarOrdenDespacho(int codigo);
 }

@@ -12,7 +12,9 @@ public interface AdministradorOrdenesDespacho {
 	
 	List<OrdenDespacho> listar();
 	
+	List<OrdenDespacho> listarPorEstado(String estado);
+	
 	void actualizar(OrdenDespacho ordenDespacho);
 	
-	OrdenDespacho get(String id);
+	OrdenDespacho get(int id);
 }

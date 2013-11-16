@@ -10,10 +10,16 @@ import javax.jws.WebService;
 
 import ar.edu.uade.integracion.VO.ArticuloVO;
 import ar.edu.uade.integracion.VO.AtributoVO;
+import ar.edu.uade.integracion.VO.ItemSolicitudArticuloVO;
 import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 import despacho.backend.administradores.AdministradorArticulos;
+import despacho.backend.administradores.AdministradorOrdenesDespacho;
 import despacho.backend.entities.Articulo;
 import despacho.backend.entities.ArticuloAtributo;
+import despacho.backend.entities.EstadoOrdenDespacho;
+import despacho.backend.entities.EstadoSolicitudArticulo;
+import despacho.backend.entities.OrdenDespacho;
+import despacho.backend.entities.SolicitudArticulo;
 import despacho.backend.utils.Logger;
 
 @Stateless
@@ -22,6 +28,12 @@ public class ServicioArticulosBean implements ServicioArticulos {
 
 	@EJB
 	private AdministradorArticulos administradorArticulos;
+	
+	@EJB
+	private AdministradorOrdenesDespacho administradorOrdenesDespacho;
+	
+	@EJB
+	private ServicioOrdenesDespacho servicioOrdenesDespacho;
 	
 	@Override
 	@WebMethod
@@ -71,9 +83,50 @@ public class ServicioArticulosBean implements ServicioArticulos {
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
 	public Boolean recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) {
 		try {
-			Logger.info("DCH03", "Recepcion articulo");
+			Logger.info("DCH03", "Recepcion solicitud articulo: " + solicitudArticulo.getIdSolicitudArticulo());
 			
-			// TODO: implementar DCH03
+			for (ItemSolicitudArticuloVO itemSolicitud : solicitudArticulo.getArticulos()) {
+				
+				int cantidad = itemSolicitud.getCantSolicitada();
+				
+				// Obtengo las ordenes PENDIENTES DE ENTREGA (ordenadas por la mas antigua)
+				List<OrdenDespacho> ordenesPendientes = this.administradorOrdenesDespacho.listarPorEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
+				
+				for (OrdenDespacho ordenPendiente : ordenesPendientes) {
+					
+					// Proceso la orden que contenga el articulo en cuestion
+					for (SolicitudArticulo solicitudArticuloOrden : ordenPendiente.getArticulos()) {
+						
+						if (itemSolicitud.getIdArticulo() == solicitudArticuloOrden.getArticulo().getIdArticulo()) {
+							
+							if (solicitudArticuloOrden.getCantidad() <= cantidad) {
+								
+								solicitudArticuloOrden.setEstado(EstadoSolicitudArticulo.LISTA);
+								cantidad = cantidad - solicitudArticuloOrden.getCantidad();
+								
+								// Actualizo la orden
+								this.administradorOrdenesDespacho.actualizar(ordenPendiente);
+							}
+						}
+					}
+					
+					// Si todos los articulos de la orden estan listos para entrega, se llama a DCH04
+					Boolean ordenListaParaEntrega = true;
+					
+					for (SolicitudArticulo solicitudArticuloOrden : ordenPendiente.getArticulos()) {
+						
+						if (solicitudArticuloOrden.getEstado() != EstadoSolicitudArticulo.LISTA) {
+							
+							ordenListaParaEntrega = false;
+							break;
+						}
+					}
+					
+					if (ordenListaParaEntrega) {
+						this.servicioOrdenesDespacho.completarOrdenDespacho(ordenPendiente.getCodOrden());
+					}
+				}
+			}
 			
 			Logger.info("DCH03", "Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
 			return true;

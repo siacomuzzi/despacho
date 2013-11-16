@@ -5,6 +5,7 @@ import java.util.*;
 import javax.ejb.*;
 import javax.jws.*;
 
+import vo.EstadoDespachoVO;
 import ar.edu.uade.integracion.VO.ItemSolicitudArticuloVO;
 import ar.edu.uade.integracion.VO.OrdenDespachoVO;
 import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
@@ -114,9 +115,8 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	
 	@Override
 	// DCH04. Envío Cambio de Estado de Despacho (Entrega)
-	public void completarOrdenDespacho(String codigo) {
+	public void completarOrdenDespacho(int codigo) {
 		try {
-			// TODO: Quien llama a este metodo?
 			Logger.info("DCH04", "Completar Orden de Despacho: " + codigo);
 			
 			OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
@@ -135,9 +135,15 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			// Informar en comunicación sincrónica (REST) al módulo Logística
 			Logger.info("DCH04", "Informando a Logistica que la orden de despacho fue completada...");
 			
+			EstadoDespachoVO estadoDespacho = new EstadoDespachoVO();
+			estadoDespacho.setCodigoOD(codigo);
+			estadoDespacho.setEstado(EstadoOrdenDespacho.ENTREGADA);
+			estadoDespacho.setCodigoSalida(0);
+			estadoDespacho.setErrorDescripcion("");
+			
 			MensajeSincronicoRest.post(
 					Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
-					null); // TODO: ver que objeto enviar
+					estadoDespacho);
 			
 			// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
 			orden.setEstado(EstadoOrdenDespacho.ENTREGADA);

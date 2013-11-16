@@ -9,11 +9,11 @@ import javax.ws.rs.core.Response;
 
 import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 
-@Path("/articulos")
+@Path("/json")
 public class ArticulosApiController {
 	
 	@POST
-	@Path("/paraDespachar")
+	@Path("/solicitudArticulo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
 	public Response recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) throws NamingException {
