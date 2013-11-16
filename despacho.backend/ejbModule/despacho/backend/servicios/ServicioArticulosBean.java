@@ -13,11 +13,10 @@ import ar.edu.uade.integracion.VO.AtributoVO;
 import despacho.backend.administradores.AdministradorArticulos;
 import despacho.backend.entities.Articulo;
 import despacho.backend.entities.ArticuloAtributo;
-import despacho.backend.utils.Configuracion;
 import despacho.backend.utils.Logger;
 
 @Stateless
-@WebService(name = Configuracion.IngresoOrdenDespachoServiceName)
+@WebService
 public class ServicioArticulosBean implements ServicioArticulos {
 
 	@EJB
