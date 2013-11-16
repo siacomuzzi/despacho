@@ -18,6 +18,10 @@ public class ArticulosApiController {
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
 	public Response recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) throws NamingException {
 		
+		if (solicitudArticulo == null || solicitudArticulo.getIdSolicitudArticulo() == null) {
+			return Response.status(400).build(); // HTTP 400: BadRequest
+		}
+		
 		Boolean success = BusinessDelegate.getInstance().recepcionArticulosParaDespachar(solicitudArticulo);
 		return Response.status(success ? 201 : 500).build();
 	}

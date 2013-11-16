@@ -56,7 +56,8 @@ public class Logger {
 			}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			System.out.println("[ERROR] Ocurrio un error al intentar loguear: " + e.getMessage());
 		}
 	}
 }
