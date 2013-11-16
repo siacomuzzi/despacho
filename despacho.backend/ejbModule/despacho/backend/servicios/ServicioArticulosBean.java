@@ -10,6 +10,7 @@ import javax.jws.WebService;
 
 import ar.edu.uade.integracion.VO.ArticuloVO;
 import ar.edu.uade.integracion.VO.AtributoVO;
+import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 import despacho.backend.administradores.AdministradorArticulos;
 import despacho.backend.entities.Articulo;
 import despacho.backend.entities.ArticuloAtributo;
@@ -68,17 +69,19 @@ public class ServicioArticulosBean implements ServicioArticulos {
 	
 	@Override
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
-	public void recepcionArticulosParaDespachar() {
+	public Boolean recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) {
 		try {
-			Logger.info("DCH03", "");
+			Logger.info("DCH03", "Recepcion articulo");
 			
 			// TODO: implementar DCH03
 			
 			Logger.info("DCH03", "Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
+			return true;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			Logger.error("DCH31", e.getMessage());
+			Logger.error("DCH03", e.getMessage());
+			return false;
 		}
 	}
 }

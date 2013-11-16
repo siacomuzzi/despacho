@@ -6,18 +6,18 @@ import vo.MensajeLogVO;
 
 public class Logger {
 	public static void error(String evento, String message) {
-		logMessage(evento, "[ERROR] " + message);
+		logMessage(evento, "[ERROR] " + message, true);
 	}
 	
 	public static void info(String evento, String message) {
-		logMessage(evento, "[INFO] " + message);
+		logMessage(evento, "[INFO] " + message, false);
 	}
 	
 	public static void warning(String evento, String message) {
-		logMessage(evento, "[WARNING] " + message);
+		logMessage(evento, "[WARNING] " + message, true);
 	}
 	
-	private static void logMessage(String evento, String message) {
+	private static void logMessage(String evento, String message, Boolean error) {
 		System.out.println(message);
 		
 		try {
@@ -26,11 +26,11 @@ public class Logger {
 			String logAsincrono = Configuracion.getInstancia().get().get("logAsincrono");
 			
 			MensajeLogVO mensajeLog = new MensajeLogVO();
-			mensajeLog.setCodModulo(Integer.parseInt(logCodigoModulo)); // TODO: validar
+			mensajeLog.setCodModulo(Integer.parseInt(logCodigoModulo));
+			mensajeLog.setModulo(modulo);
 			mensajeLog.setEvento(evento);
 			mensajeLog.setFecha(new Date());
-			mensajeLog.setModulo(modulo);
-			mensajeLog.setTipo(0); // TODO: que pongo aca??
+			mensajeLog.setTipo(error ? 1 : 0);
 			
 			if (logAsincrono == "true") {
 				// Log por queue

@@ -7,6 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
+
 @Path("/articulos")
 public class ArticulosApiController {
 	
@@ -14,11 +16,9 @@ public class ArticulosApiController {
 	@Path("/paraDespachar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	// DCH03.Recepción y Procesamiento de Artículos a Despachar
-	public Response recepcionArticulosParaDespachar() throws NamingException {
+	public Response recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) throws NamingException {
 		
-		// TODO: definir que parametros recibe
-		BusinessDelegate.getInstance().recepcionArticulosParaDespachar();
-		
-		return Response.status(200).entity("Recepcion procesada exitosamente!").build();
+		Boolean success = BusinessDelegate.getInstance().recepcionArticulosParaDespachar(solicitudArticulo);
+		return Response.status(success ? 201 : 500).build();
 	}
 }

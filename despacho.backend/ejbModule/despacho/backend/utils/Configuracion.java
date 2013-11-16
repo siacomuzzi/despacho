@@ -8,7 +8,7 @@ public class Configuracion {
 	private static Configuracion instance = null;
 	
 	public static final String IngresoOrdenDespachoServiceName = "ServicioOrdenesDespacho";
-	public static final String IngresoArticuloQueueName = "queue/NuevoArticulo";
+	public static final String IngresoArticuloQueueName = "queue/recepcionDepositoArticulo";
 	
 	private Configuracion() {
 		// Configuracion de Depositos
@@ -39,7 +39,7 @@ public class Configuracion {
 		
 		// Configuracion de Despacho
 		configuracion.put("NombreDespacho", "DespachoA");
-		configuracion.put("CodigoModuloParaLog", "999");
+		configuracion.put("CodigoModuloParaLog", "12");
 		
 		// Configuracion de Auditoria
 		configuracion.put("logAsincrono", "");

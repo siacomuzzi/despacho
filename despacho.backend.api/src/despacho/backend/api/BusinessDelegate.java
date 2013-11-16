@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import ar.edu.uade.integracion.VO.ArticuloVO;
+import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 import despacho.backend.servicios.ServicioArticulos;
 
 public class BusinessDelegate implements ServicioArticulos {
@@ -43,7 +44,7 @@ public class BusinessDelegate implements ServicioArticulos {
 			String url = 
 					"ejb:" + earAppName + "/" + ejbModuleName + "/" + distinctName + "/" + beanName + "!" + viewClassName;
 
-			System.out.println("Looking EJB via JNDI ");
+			System.out.println("Looking EJB via JNDI");
 			System.out.println(url);
 
 			servicioArticulos = (ServicioArticulos) context.lookup(url);
@@ -57,12 +58,11 @@ public class BusinessDelegate implements ServicioArticulos {
 	@Override
 	public void ingresarArticulo(ArticuloVO articulo) {
 		servicioArticulos.ingresarArticulo(articulo);
-		
 	}
 
 	@Override
-	public void recepcionArticulosParaDespachar() {
-		servicioArticulos.recepcionArticulosParaDespachar();
+	public Boolean recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) {
+		return servicioArticulos.recepcionArticulosParaDespachar(solicitudArticulo);
 	}
 
 }
