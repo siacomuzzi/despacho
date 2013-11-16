@@ -2,9 +2,9 @@ package despacho.backend.servicios;
 
 import javax.ejb.*;
 
-import despacho.backend.entities.*;
+import ar.edu.uade.integracion.VO.ArticuloVO;
 
 @Remote
 public interface ServicioArticulos {
-	void ingresarArticulo(Articulo articulo);
+	void ingresarArticulo(ArticuloVO articulo);
 }

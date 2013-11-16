@@ -1,79 +1,62 @@
-package despacho.backend.entities;
+package ar.edu.uade.integracion.VO;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "ORDEN_DESPACHO")
-public class OrdenDespacho {
-	
+
+public class OrdenDespachoVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int codOrden;
 	private String nombreUsuario;
 	private int codVenta;
 	private int codPortal;
-	private ArrayList<SolicitudArticulo> articulos;
+	private ArrayList<ItemSolicitudArticuloVO> articulos;
 	private String estado;
-	private Date fecha;
-	
-	public OrdenDespacho() {
-		this.fecha = new Date();
+	public OrdenDespachoVO() {
+		super();
 	}
-
-	@Id
 	public int getCodOrden() {
 		return codOrden;
 	}
-
 	public void setCodOrden(int codOrden) {
 		this.codOrden = codOrden;
 	}
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
-
 	public int getCodVenta() {
 		return codVenta;
 	}
-
 	public void setCodVenta(int codVenta) {
 		this.codVenta = codVenta;
 	}
-
 	public int getCodPortal() {
 		return codPortal;
 	}
-
 	public void setCodPortal(int codPortal) {
 		this.codPortal = codPortal;
 	}
-
-	public ArrayList<SolicitudArticulo> getArticulos() {
+	public ArrayList<ItemSolicitudArticuloVO> getArticulos() {
 		return articulos;
 	}
-
-	public void setArticulos(ArrayList<SolicitudArticulo> articulos) {
+	public void setArticulos(ArrayList<ItemSolicitudArticuloVO> articulos) {
 		this.articulos = articulos;
 	}
-
 	public String getEstado() {
 		return estado;
 	}
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
-	public Date getFecha() {
-		return fecha;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 }

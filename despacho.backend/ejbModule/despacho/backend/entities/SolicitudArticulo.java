@@ -1,26 +1,24 @@
 package despacho.backend.entities;
 
-import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "SOLICITUD_ARTICULO")
-public class SolicitudArticulo implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class SolicitudArticulo {
 	
 	private String id;
-	private ArticuloOrdenDespacho articuloOrdenDespacho;
+	private Date fecha;
+	private String codigoArticulo;
+	private int cantidad;
 	private String estado;
-	private String deposito;
 	
 	public SolicitudArticulo() {
 	}
-	
+
 	@Id
 	public String getId() {
 		return id;
@@ -30,13 +28,28 @@ public class SolicitudArticulo implements Serializable {
 		this.id = id;
 	}
 
-	@OneToOne
-	public ArticuloOrdenDespacho getArticuloOrdenDespacho() {
-		return articuloOrdenDespacho;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setArticuloOrdenDespacho(ArticuloOrdenDespacho articuloOrdenDespacho) {
-		this.articuloOrdenDespacho = articuloOrdenDespacho;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getCodigoArticulo() {
+		return codigoArticulo;
+	}
+
+	public void setCodigoArticulo(String codigoArticulo) {
+		this.codigoArticulo = codigoArticulo;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public String getEstado() {
@@ -45,13 +58,5 @@ public class SolicitudArticulo implements Serializable {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public String getDeposito() {
-		return deposito;
-	}
-
-	public void setDeposito(String deposito) {
-		this.deposito = deposito;
 	}
 }

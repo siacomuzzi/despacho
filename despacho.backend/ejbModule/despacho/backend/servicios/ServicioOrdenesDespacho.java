@@ -2,11 +2,11 @@ package despacho.backend.servicios;
 
 import javax.ejb.*;
 
-import despacho.backend.entities.*;
+import ar.edu.uade.integracion.VO.OrdenDespachoVO;
 
 @Remote
 public interface ServicioOrdenesDespacho {
-	void ingresarOrdenDespacho(OrdenDespacho ordenDespacho);
+	void ingresarOrdenDespacho(OrdenDespachoVO ordenDespacho);
 	
 	void completarOrdenDespacho(String codigo);
 }

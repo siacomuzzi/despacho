@@ -15,7 +15,7 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 	
 	@Override
 	public void agregar(Articulo articulo) {
-		if (this.get(articulo.getCodigo()) == null) {
+		if (this.get(articulo.getIdArticulo()) == null) {
 			this.em.persist(articulo);
 		}
 	}

@@ -1,40 +1,120 @@
 package despacho.backend.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ARTICULO")
 public class Articulo {
 	
-	private String codigo;
-	private Deposito deposito;
+	private String idArticulo;
+	private String nombre;
+	private String descripcion;
+	private String marca;
+	private String foto;
+	private String origen;
+	private float precio;
+	private String categoria;
+	private int stock;
+	private List<ArticuloAtributo> atributos;
+	private String idDeposito;
 	
 	public Articulo() {
 	}
-	
-	public Articulo(String codigo, Deposito deposito) {
-		this.codigo = codigo;
-		this.deposito = deposito;
-	}
-	
+
 	@Id
-	public String getCodigo() {
-		return codigo;
+	public String getIdArticulo() {
+		return idArticulo;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setIdArticulo(String idArticulo) {
+		this.idArticulo = idArticulo;
 	}
 
-	@ManyToOne
-	public Deposito getDeposito() {
-		return deposito;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setDeposito(Deposito deposito) {
-		this.deposito = deposito;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="articulo")
+	public List<ArticuloAtributo> getAtributos() {
+		return atributos;
+	}
+
+	public void setAtributos(List<ArticuloAtributo> atributos) {
+		this.atributos = atributos;
+	}
+
+	public String getIdDeposito() {
+		return idDeposito;
+	}
+
+	public void setIdDeposito(String idDeposito) {
+		this.idDeposito = idDeposito;
 	}
 }

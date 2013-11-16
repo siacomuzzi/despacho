@@ -7,7 +7,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import despacho.backend.entities.Articulo;
+import ar.edu.uade.integracion.VO.ArticuloVO;
 import despacho.backend.servicios.ServicioArticulos;
 import despacho.backend.utils.Configuracion;
 import despacho.backend.utils.Logger;
@@ -26,7 +26,7 @@ public class NuevoArticulo implements MessageListener {
 
 			try { 
 				ObjectMessage inboundMessage = (ObjectMessage) message; 
-				Articulo articulo = (Articulo) inboundMessage.getObject();
+				ArticuloVO articulo = (ArticuloVO) inboundMessage.getObject();
 				
 				this.servicioArticulos.ingresarArticulo(articulo);
 			} catch (Exception e) { 

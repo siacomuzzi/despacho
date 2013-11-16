@@ -6,6 +6,7 @@ import javax.ejb.*;
 import javax.jws.*;
 
 import ar.edu.uade.integracion.VO.ItemSolicitudArticuloVO;
+import ar.edu.uade.integracion.VO.OrdenDespachoVO;
 import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
 import despacho.backend.administradores.*;
 import despacho.backend.entities.*;
@@ -16,14 +17,11 @@ import despacho.backend.utils.MensajeSincronicoRest;
 import despacho.backend.utils.MensajeSincronicoWS;
 
 @Stateless
-@WebService
+@WebService(name = Configuracion.IngresoOrdenDespachoServiceName)
 public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	
 	@EJB
 	private AdministradorOrdenesDespacho administradorOrdenesDespacho;
-	
-	@EJB
-	private AdministradorDepositos administradorDepositos;
 	
 	@EJB
 	private AdministradorArticulos administradorArticulos;
@@ -31,42 +29,40 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 	@Override
 	@WebMethod
 	// DCH02. Logistica ingresa nuevas ordenes de despacho
-	public void ingresarOrdenDespacho(OrdenDespacho ordenDespacho) {
-		Logger.info("Nueva Orden de despacho: " + ordenDespacho.getCodigo());
-		
-		// Se deben registrar como pendientes de entrega
-		ordenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
-		this.administradorOrdenesDespacho.agregar(ordenDespacho);
-		
-		// Por cada articulo de la orden, se debe obtener el Deposito que lo administra y solicitarlo asincronicamente
-		List<ArticuloOrdenDespacho> articulosOrden = ordenDespacho.getArticulos();
-		
-		if (articulosOrden != null) {
-			for (ArticuloOrdenDespacho articuloOrden : articulosOrden) {
-				String codigoArticulo = articuloOrden.getCodigo();
-				Articulo articulo = this.administradorArticulos.get(codigoArticulo);
-				
-				if (articulo == null) {
-					Logger.error("El articulo con codigo " + codigoArticulo + " no existe.");
-					break;
-				}
-				
-				// Obtengo el deposito asociado al articulo
-				String nombreDeposito = articulo.getDeposito().getNombre();
-				
-				try {
+	public void ingresarOrdenDespacho(OrdenDespachoVO ordenDespacho) {
+		try {
+			if (ordenDespacho == null) {
+				return;
+			}
+			
+			Logger.info("Nueva Orden de despacho: " + ordenDespacho.getCodOrden());
+			
+			ArrayList<SolicitudArticulo> articulos = new ArrayList<SolicitudArticulo>();
+			
+			// Por cada articulo de la orden, se debe obtener el Deposito que lo administra y solicitarlo asincronicamente
+			List<ItemSolicitudArticuloVO> articulosOrden = ordenDespacho.getArticulos();
+			
+			if (articulosOrden != null) {
+				for (ItemSolicitudArticuloVO articuloOrden : articulosOrden) {
+					String codigoArticulo = articuloOrden.getIdArticulo();
+					Articulo articulo = this.administradorArticulos.get(codigoArticulo);
+					
+					if (articulo == null) {
+						Logger.error("El articulo con codigo " + codigoArticulo + " no existe.");
+						break;
+					}
+					
+					// Obtengo el deposito asociado al articulo
+					String nombreDeposito = articulo.getIdDeposito();
+					
 					// Solicitar articulo
-					Logger.info("Solicitando articulo " + articulo.getCodigo() + " al deposito " + nombreDeposito + "...");
-					
-					// El id de la solicitud es "{codigoOrden}-{codigoArticulo}"
-					String idSolicitudArticulo = articuloOrden.getOrdenDespacho() + articuloOrden.getCodigo();
-					
-					ItemSolicitudArticuloVO itemSolicitud = new ItemSolicitudArticuloVO();
-					itemSolicitud.setIdArticulo(articuloOrden.getCodigo());
-					itemSolicitud.setCantSolicitada(articuloOrden.getCantidad());
+					Logger.info("Solicitando articulo " + articulo.getIdArticulo() + " al deposito " + nombreDeposito + "...");
+				
+					// El id de la solicitud es "{CodigoOrden}-{IdArticulo}"
+					String idSolicitudArticulo = ordenDespacho.getCodOrden() + "-" + articuloOrden.getIdArticulo();
 					
 					List<ItemSolicitudArticuloVO> articulosSolicitud = new ArrayList<ItemSolicitudArticuloVO>();
-					articulosSolicitud.add(itemSolicitud);
+					articulosSolicitud.add(articuloOrden);
 					
 					SolicitudArticuloVO solicitudDeposito = new SolicitudArticuloVO();
 					solicitudDeposito.setEstado(EstadoSolicitudArticulo.SOLICITADO);
@@ -83,22 +79,36 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 							Configuracion.getInstancia().get().get(nombreDeposito + "-SolicitarArticuloQueue-Password"), 
 							solicitudDeposito);
 					
-					// Registrar la solicitud por Deposito
+					// Guardar la solicitud por Deposito
 					SolicitudArticulo solicitud = new SolicitudArticulo();
 					solicitud.setId(idSolicitudArticulo);
-					solicitud.setArticuloOrdenDespacho(articuloOrden);
-					solicitud.setDeposito(nombreDeposito);
 					solicitud.setEstado(EstadoSolicitudArticulo.SOLICITADO);
+					solicitud.setCantidad(articuloOrden.getCantSolicitada());
+					solicitud.setCodigoArticulo(articuloOrden.getIdArticulo());
+					solicitud.setFecha(solicitudDeposito.getFecha());
 					this.administradorArticulos.guardarSolicitud(solicitud);
 					
-				} catch (Exception e) {
-					e.printStackTrace();
-					Logger.error(e.getMessage());
+					articulos.add(solicitud);
 				}
 			}
+			
+			// Guardar la orden. Se deben registrar como pendientes de entrega
+			OrdenDespacho nuevaOrdenDespacho = new OrdenDespacho();
+			nuevaOrdenDespacho.setEstado(EstadoOrdenDespacho.PENDIENTE_ENTREGA);
+			nuevaOrdenDespacho.setCodOrden(ordenDespacho.getCodOrden());
+			nuevaOrdenDespacho.setCodPortal(ordenDespacho.getCodPortal());
+			nuevaOrdenDespacho.setCodVenta(ordenDespacho.getCodVenta());
+			nuevaOrdenDespacho.setFecha(new Date());
+			nuevaOrdenDespacho.setNombreUsuario(ordenDespacho.getNombreUsuario());
+			nuevaOrdenDespacho.setArticulos(articulos);
+			this.administradorOrdenesDespacho.agregar(nuevaOrdenDespacho);
+			
+			Logger.info("Listo (DCH02 - Logistica ingresa nuevas ordenes de despacho)");
 		}
-		
-		Logger.info("Listo (DCH02)!");
+		catch (Exception e) {
+			e.printStackTrace();
+			Logger.error(e.getMessage());
+		}
 	}
 	
 	@Override

@@ -16,10 +16,6 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 
 	@Override
 	public void agregar(OrdenDespacho ordenDespacho) {
-		for (ArticuloOrdenDespacho articulo : ordenDespacho.getArticulos()) {
-			articulo.setOrdenDespacho(ordenDespacho.getCodigo());
-		}
-		
 		this.em.persist(ordenDespacho);
 	}
 	

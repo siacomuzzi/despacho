@@ -7,6 +7,7 @@ public class Configuracion {
 	private static Map<String, String> configuracion = new HashMap<String, String>();
 	private static Configuracion instance = null;
 	
+	public static final String IngresoOrdenDespachoServiceName = "ServicioOrdenesDespacho";
 	public static final String IngresoArticuloQueueName = "queue/NuevoArticulo";
 	
 	private Configuracion() {
