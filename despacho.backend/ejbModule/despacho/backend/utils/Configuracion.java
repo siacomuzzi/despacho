@@ -16,8 +16,8 @@ public class Configuracion {
 		// Configuracion de DepositoA
 		configuracion.put("DepositoA-SolicitarArticuloQueue-Url", "ConnectionFactoryDepositoA");
 		configuracion.put("DepositoA-SolicitarArticuloQueue-Nombre", "RecibirSolicitudArticulo");
-		configuracion.put("DepositoA-SolicitarArticuloQueue-Usuario", "msg");
-		configuracion.put("DepositoA-SolicitarArticuloQueue-Password", "msg2013");
+		configuracion.put("DepositoA-SolicitarArticuloQueue-Usuario", "test");
+		configuracion.put("DepositoA-SolicitarArticuloQueue-Password", "test123");
 		
 		// Configuracion de DepositoB
 		configuracion.put("DepositoB-SolicitarArticuloQueue-Url", "ConnectionFactoryDepositoB");
@@ -28,8 +28,8 @@ public class Configuracion {
 		// Configuracion de DepositoC
 		configuracion.put("DepositoC-SolicitarArticuloQueue-Url", "ConnectionFactoryDepositoC");
 		configuracion.put("DepositoC-SolicitarArticuloQueue-Nombre", "recepcionDespachoQueue");
-		configuracion.put("DepositoC-SolicitarArticuloQueue-Usuario", "jms");
-		configuracion.put("DepositoC-SolicitarArticuloQueue-Password", "jms2013");
+		configuracion.put("DepositoC-SolicitarArticuloQueue-Usuario", "test");
+		configuracion.put("DepositoC-SolicitarArticuloQueue-Password", "test1234");
 		
 		// Configuracion de Portales
 		configuracion.put("Portales", "PortalA;PortalB;PortalC");
@@ -43,12 +43,12 @@ public class Configuracion {
 		
 		// Configuracion de Auditoria
 		configuracion.put("logAsincrono", "");
+		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionAplicaciones");
 		configuracion.put("Auditoria-LoguearEventoWS-Url", "http://192.168.1.124:8080/IntegracionAplicaciones/AdminAuditoriaBean");
 		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
 		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "recibirInformeAuditoria");
 		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "test");
 		configuracion.put("Auditoria-LoguearEventoQueue-Password", "test123");
-		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionAplicaciones");
 	}
 	
 	public static Configuracion getInstancia() {
