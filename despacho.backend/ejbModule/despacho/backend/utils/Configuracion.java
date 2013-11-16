@@ -48,6 +48,7 @@ public class Configuracion {
 		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "loguearEventosQueue");
 		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "jms");
 		configuracion.put("Auditoria-LoguearEventoQueue-Password", "jms2013");
+		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionAplicaciones");
 	}
 	
 	public static Configuracion getInstancia() {

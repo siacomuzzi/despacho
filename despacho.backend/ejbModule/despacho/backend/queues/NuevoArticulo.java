@@ -31,7 +31,7 @@ public class NuevoArticulo implements MessageListener {
 				this.servicioArticulos.ingresarArticulo(articulo);
 			} catch (Exception e) { 
 				e.printStackTrace();
-				Logger.info("DCH01", e.getMessage());
+				Logger.error("DCH01", e.getMessage());
 			} 
 		} 
 	}

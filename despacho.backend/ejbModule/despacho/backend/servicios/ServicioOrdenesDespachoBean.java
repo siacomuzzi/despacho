@@ -144,7 +144,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			estadoDespacho.setErrorDescripcion("");
 			
 			MensajeSincronicoRest.post(
-					Configuracion.getInstancia().get().get("Logistica-OrdenDespachoListaRest-Url"), 
+					Configuracion.getInstancia().get().get("Auditoria-OrdenDespachoListaRest-Url"), 
 					estadoDespacho);
 			
 			// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
