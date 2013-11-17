@@ -42,7 +42,6 @@ window.ArticuloListItemView = Backbone.View.extend({
     },
 
     render: function () {
-    	alert(this.model);
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
     }
