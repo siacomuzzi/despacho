@@ -54,6 +54,16 @@ var AppRouter = Backbone.Router.extend({
         this.headerView.selectMenuItem('solicitudes-menu');
     },
     
+    ordenes: function () {
+    	var ordenesList = new OrdenesCollection();
+        
+    	ordenesList.fetch({success: function(){
+            $('#content').html(new OrdenListView({ model: ordenesList }).el);
+        }});
+    	
+        this.headerView.selectMenuItem('ordenes-menu');
+    },
+    
     home: function () {
         if (!this.homeView) {
             this.homeView = new HomeView();
@@ -73,7 +83,7 @@ $(document).on({
     }
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionListView', 'ConfiguracionListItemView', 'ArticuloListItemView', 'ArticuloListView', 'SolicitudListItemView', 'SolicitudListView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionListView', 'ConfiguracionListItemView', 'ArticuloListItemView', 'ArticuloListView', 'SolicitudListItemView', 'SolicitudListView', 'OrdenListItemView', 'OrdenListView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });

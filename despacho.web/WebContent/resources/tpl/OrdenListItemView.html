@@ -1,0 +1,53 @@
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= codOrden %></span>
+		</div>
+	</div>
+</td>
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= codVenta %></span>
+		</div>
+	</div>
+</td>
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= codPortal %></span>
+		</div>
+	</div>
+</td>
+<td style="width:15%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view">
+				<%= new Date(parseInt(fecha)).toLocaleString() %>	
+			</span>
+		</div>
+	</div>
+</td>
+<td style="width:20%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= articulos.map(function (s) { if (s.articulo) { return s.articulo.idArticulo + ' - ' + s.articulo.nombre + ' (' + s.estado + ')'; } }).join('<br>') %></span>
+		</div>
+	</div>
+</td>
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= nombreUsuario %></span>
+		</div>
+	</div>
+</td>
+<td style="width:15%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view" style="color:<%= estado === 'Entregada' ? 'green' : 'orange' %>;">
+				<%= estado === 'PendienteEntrega' ? 'Pendiente Entrega' : estado %>
+			</span>
+		</div>
+	</div>
+</td>

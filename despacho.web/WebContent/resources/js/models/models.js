@@ -114,13 +114,13 @@ window.Orden = Backbone.Model.extend({
     idAttribute: "codOrden",
 
     defaults: {
-    	codOrden: "",
+    	codOrden: 0,
+    	codVenta: 0,
+    	codPortal: 0,
+    	fecha: new Date(),
+    	articulos: [],
     	nombreUsuario: "",
-    	codVenta: "",
-    	codPortal: "",
-    	fecha: "",
-    	estado: "",
-    	articulos: "",
+    	estado: ""
     }
 });
 
