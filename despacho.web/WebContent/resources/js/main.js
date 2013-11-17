@@ -3,7 +3,10 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         ""                  	: "home",
         "usuarios"   			: "usuarios",
-        "configuracion"   		: "configuracion"
+        "configuracion"   		: "configuracion",
+        "articulos"   			: "articulos",
+        "ordenes"   			: "ordenes",
+        "solicitudes"   		: "solicitudes"
     },
 
     initialize: function () {
@@ -31,6 +34,16 @@ var AppRouter = Backbone.Router.extend({
         this.headerView.selectMenuItem('configuracion-menu');
     },
     
+    articulos: function () {
+    	var articulosList = new ArticulosCollection();
+        
+    	articulosList.fetch({success: function(){
+            $('#content').html(new ArticuloListView({ model: articulosList }).el);
+        }});
+    	
+        this.headerView.selectMenuItem('articulos-menu');
+    },
+    
     home: function () {
         if (!this.homeView) {
             this.homeView = new HomeView();
@@ -50,7 +63,7 @@ $(document).on({
     }
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionListView', 'ConfiguracionListItemView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionListView', 'ConfiguracionListItemView', 'ArticuloListItemView', 'ArticuloListView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });

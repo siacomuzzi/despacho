@@ -62,3 +62,25 @@ window.ConfiguracionCollection = Backbone.Collection.extend({
 	model: Configuracion,
     url: window.baseUrl + "api/configuracion"
 });
+
+// Articulos
+window.Articulo = Backbone.Model.extend({
+
+    urlRoot: window.baseUrl + "api/articulos",
+    idAttribute: "idArticulo",
+
+    defaults: {
+    	idArticulo: "",
+    	nombre: "",
+    	marca: "",
+    	categoria: "",
+    	origen: "",
+    	precio: "",
+    	idDeposito: "",
+    }
+});
+
+window.ArticulosCollection = Backbone.Collection.extend({
+	model: Articulo,
+    url: window.baseUrl + "api/articulos"
+});
