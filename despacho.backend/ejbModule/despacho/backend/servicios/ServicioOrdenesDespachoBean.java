@@ -120,6 +120,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			Logger.info("DCH04", "Completar Orden de Despacho: " + codigo);
 			
 			OrdenDespacho orden = this.administradorOrdenesDespacho.get(codigo);
+			
 			if (orden == null) {
 				Logger.error("DCH04", "La orden de despacho con codigo " + codigo + " no existe.");
 				return;
@@ -131,7 +132,12 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			for (String nombrePortal: Configuracion.getInstancia().getPortales()) {
 				Logger.info("DCH04", "Informando al portal " + nombrePortal + " que la orden de despacho fue completada...");
 				
-				MensajeSincronicoWS.informarOrdenListaEntrega(orden, nombrePortal);
+				try {
+					MensajeSincronicoWS.informarOrdenListaEntrega(orden, nombrePortal);
+				}
+				catch (Exception ex) {
+					Logger.error("DCH04", ex.getMessage());
+				}
 			}
 			
 			// Informar en comunicación sincrónica (REST) al módulo Logística
@@ -143,9 +149,14 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 			estadoDespacho.setCodigoSalida(0);
 			estadoDespacho.setErrorDescripcion("");
 			
-			MensajeSincronicoRest.post(
-					Configuracion.getInstancia().get().get("Auditoria-OrdenDespachoListaRest-Url"), 
-					estadoDespacho);
+			try {
+				MensajeSincronicoRest.post(
+						Configuracion.getInstancia().get().get("Auditoria-OrdenDespachoListaRest-Url"), 
+						estadoDespacho);
+			}
+			catch (Exception ex) {
+				Logger.error("DCH04", ex.getMessage());
+			}
 			
 			// El sistema debe registrar y cambiar de estado a la Orden de Despacho y marcarla como entregada
 			this.administradorOrdenesDespacho.actualizar(orden);

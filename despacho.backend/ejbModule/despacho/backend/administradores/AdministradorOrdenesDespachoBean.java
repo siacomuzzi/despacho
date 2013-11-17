@@ -35,6 +35,12 @@ public class AdministradorOrdenesDespachoBean implements AdministradorOrdenesDes
 	
 	@Override
 	public void actualizar(OrdenDespacho ordenDespacho) {
+		// Actualizar los articulos
+		for (SolicitudArticulo solicitudArticulo : ordenDespacho.getArticulos()) {
+			
+			this.em.merge(solicitudArticulo);
+		}
+		
 		this.em.merge(ordenDespacho);
 	}
 	
