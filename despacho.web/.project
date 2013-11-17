@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>despacho.backend</project>
+		<project>integracion</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

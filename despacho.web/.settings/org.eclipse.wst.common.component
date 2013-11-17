@@ -6,6 +6,9 @@
         <dependent-module archiveName="despacho.backend.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/despacho.backend/despacho.backend">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="integracion.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/integracion/integracion">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="despacho.web"/>
         <property name="java-output-path" value="/despacho.web/build/classes"/>
     </wb-module>
