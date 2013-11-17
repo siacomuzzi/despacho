@@ -48,6 +48,7 @@
 		<script type="text/javascript" src="<c:url value="/resources/js/views/usuarioList.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/configuracionList.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/articulosList.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/solicitudesList.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/home.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/main.js" />"></script>
   	</body>

@@ -73,6 +73,11 @@ public class ArticulosAdminBusinessDelegate implements AdministradorArticulos {
 	public List<Articulo> listar() {
 		return this.administradorArticulos.listar();
 	}
+
+	@Override
+	public List<SolicitudArticulo> listarSolicitudes() {
+		return this.administradorArticulos.listarSolicitudes();
+	}
 	
 }
 

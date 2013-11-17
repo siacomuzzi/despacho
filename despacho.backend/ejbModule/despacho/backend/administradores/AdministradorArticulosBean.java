@@ -23,6 +23,13 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 	}
 	
 	@Override
+	public List<SolicitudArticulo> listarSolicitudes() {
+		@SuppressWarnings("unchecked")
+		List<SolicitudArticulo> solicitudes = this.em.createQuery(" FROM SolicitudArticulo").getResultList();
+		return solicitudes;
+	}
+	
+	@Override
 	public void agregar(Articulo articulo) {
 		if (this.get(articulo.getIdArticulo()) == null) {
 			this.em.persist(articulo);

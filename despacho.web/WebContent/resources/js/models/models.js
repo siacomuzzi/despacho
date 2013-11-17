@@ -84,3 +84,47 @@ window.ArticulosCollection = Backbone.Collection.extend({
 	model: Articulo,
     url: window.baseUrl + "api/articulos"
 });
+
+// Solicitudes
+window.Solicitud = Backbone.Model.extend({
+
+    urlRoot: window.baseUrl + "api/solicitudes",
+    idAttribute: "id",
+
+    defaults: {
+    	id: "",
+    	fecha: "",
+    	cantidad: "",
+    	estado: "",
+    	codigoOrden: "",
+    	articulo: "",
+    	idDeposito: ""
+    }
+});
+
+window.SolicitudesCollection = Backbone.Collection.extend({
+	model: Solicitud,
+    url: window.baseUrl + "api/solicitudes"
+});
+
+// Ordenes de Despacho
+window.Orden = Backbone.Model.extend({
+
+    urlRoot: window.baseUrl + "api/ordenes",
+    idAttribute: "codOrden",
+
+    defaults: {
+    	codOrden: "",
+    	nombreUsuario: "",
+    	codVenta: "",
+    	codPortal: "",
+    	fecha: "",
+    	estado: "",
+    	articulos: "",
+    }
+});
+
+window.OrdenesCollection = Backbone.Collection.extend({
+	model: Orden,
+    url: window.baseUrl + "api/ordenes"
+});

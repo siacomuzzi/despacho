@@ -1,0 +1,51 @@
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= id %></span>
+		</div>
+	</div>
+</td>
+<td style="width:20%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= articulo.nombre + ' (' + articulo.idArticulo + ')' %></span>
+		</div>
+	</div>
+</td>
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= idDeposito %></span>
+		</div>
+	</div>
+</td>
+<td style="width:15%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view">
+				<%= new Date(parseInt(fecha)).toLocaleString() %>	
+			</span>
+		</div>
+	</div>
+</td>
+<td style="width:10%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= cantidad %></span>
+		</div>
+	</div>
+</td>
+<td style="width:15%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view" style="color:<%= estado === 'Lista' ? 'green' : 'orange' %>;"><%= estado %></span>
+		</div>
+	</div>
+</td>
+<td style="width:15%;">
+	<div class="control-group" style="">
+		<div class="controls">
+			<span class="view"><%= codigoOrden %></span>
+		</div>
+	</div>
+</td>
