@@ -22,11 +22,12 @@ var AppRouter = Backbone.Router.extend({
     },
 
     configuracion: function () {
-        if (!this.configuracionView) {
-            this.configuracionView = new ConfiguracionView();
-        }
+    	var configuracionList = new ConfiguracionCollection();
         
-        $('#content').html(this.configuracionView.el);
+    	configuracionList.fetch({success: function(){
+            $('#content').html(new ConfiguracionListView({ model: configuracionList }).el);
+        }});
+    	
         this.headerView.selectMenuItem('configuracion-menu');
     },
     
@@ -49,7 +50,7 @@ $(document).on({
     }
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'UsuarioListView', 'UsuarioListItemView', 'ConfiguracionListView', 'ConfiguracionListItemView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });

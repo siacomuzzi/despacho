@@ -46,7 +46,7 @@
 		<script type="text/javascript" src="<c:url value="/resources/js/models/models.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/header.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/usuarioList.js" />"></script>
-		<script type="text/javascript" src="<c:url value="/resources/js/views/configuracion.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/js/views/configuracionList.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/views/home.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/main.js" />"></script>
   	</body>

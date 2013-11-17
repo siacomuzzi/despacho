@@ -1,0 +1,25 @@
+<td style="width:40%;">
+	<div class="control-group" style="height:5px">
+		<div class="controls">
+			<span class="view"><%= key %></span>
+		  	<span id="key" class="edit key"><%= key %></span>
+		</div>
+	</div>
+</td>
+<td style="width:50%;">
+	<div class="control-group" style="height:5px">
+		<div class="controls">
+			<span class="view"><%= value %></span>
+		  	<input id="value" class="edit value" value="<%- value %>" required style="width:100%">
+		</div>
+	</div>
+</td>
+<td style="width:5%;">
+	<div class="view">
+		<a id="editConfiguracion" role="button" style="cursor:pointer"><i class="glyphicon glyphicon-pencil"></i></a>
+	</div>
+	<div class="edit">
+		<a id="updateConfiguracion" role="button" style="cursor:pointer"><i class="glyphicon glyphicon-ok"></i></a>
+		<a id="cancelUpdateConfiguracion" role="button" style="cursor:pointer"><i class="glyphicon glyphicon-remove"></i></a>
+	</div>
+</td>

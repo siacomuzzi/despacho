@@ -1,3 +1,4 @@
+// Usuario
 window.Usuario = Backbone.Model.extend({
 
     urlRoot: window.baseUrl + "api/usuarios",
@@ -43,4 +44,21 @@ window.Usuario = Backbone.Model.extend({
 window.UsuarioCollection = Backbone.Collection.extend({
 	model: Usuario,
     url: window.baseUrl + "api/usuarios"
+});
+
+// Configuracion
+window.Configuracion = Backbone.Model.extend({
+
+    urlRoot: window.baseUrl + "api/configuracion",
+    idAttribute: "key",
+
+    defaults: {
+    	key: "",
+    	value: ""
+    }
+});
+
+window.ConfiguracionCollection = Backbone.Collection.extend({
+	model: Configuracion,
+    url: window.baseUrl + "api/configuracion"
 });
