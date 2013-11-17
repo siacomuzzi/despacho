@@ -16,7 +16,7 @@ public class ConfiguracionApiController {
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-	public Set<Entry<String, String>> getUsuarios() throws NamingException {
+	public Set<Entry<String, String>> getConfiguracion() throws NamingException {
 		return Configuracion.getInstancia().get().entrySet();
 	}
 }

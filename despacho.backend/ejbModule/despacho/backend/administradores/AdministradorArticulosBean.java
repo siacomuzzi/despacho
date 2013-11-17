@@ -1,5 +1,7 @@
 package despacho.backend.administradores;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +14,13 @@ public class AdministradorArticulosBean implements AdministradorArticulos {
 
 	@PersistenceContext(unitName="portalweb.despacho")
 	private EntityManager em;
+	
+	@Override
+	public List<Articulo> listar() {
+		@SuppressWarnings("unchecked")
+		List<Articulo> articulos = this.em.createQuery(" FROM Articulo").getResultList();
+		return articulos;
+	}
 	
 	@Override
 	public void agregar(Articulo articulo) {
