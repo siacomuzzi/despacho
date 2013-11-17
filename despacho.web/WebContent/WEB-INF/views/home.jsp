@@ -30,9 +30,13 @@
 		    
 	    </div> <!-- /container -->
 	
-	    <!-- Bootstrap core JavaScript
-	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script type="text/javascript">
+	    	if (!window.baseUrl) {
+	    		window.baseUrl = 'http://localhost:8080/despacho.backend.api/';
+	    	}
+	    </script>
+	    
 	    <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.0-min.js" />"></script>
 	    <script type="text/javascript" src="<c:url value="/resources/js/underscore-min.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/js/backbone-min.js" />"></script>

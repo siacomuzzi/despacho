@@ -6,6 +6,7 @@
 		<project>integracion</project>
 		<project>despacho.backend.api</project>
 		<project>despacho.backend</project>
+		<project>despacho.web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

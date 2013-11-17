@@ -29,4 +29,17 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 	public void actualizar(Usuario usuario) {
 		this.em.merge(usuario);
 	}
+	
+	@Override
+	public Usuario get(String username) {
+		return this.em.find(Usuario.class, username);
+	}
+	
+	@Override
+	public void eliminar(String username) {
+		Usuario usuario = this.get(username);
+		if (usuario != null) {
+			this.em.remove(usuario);
+		}
+	}
 }

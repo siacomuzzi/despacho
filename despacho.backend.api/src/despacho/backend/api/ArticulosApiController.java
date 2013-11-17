@@ -22,7 +22,7 @@ public class ArticulosApiController {
 			return Response.status(400).build(); // HTTP 400: BadRequest
 		}
 		
-		Boolean success = BusinessDelegate.getInstance().recepcionArticulosParaDespachar(solicitudArticulo);
+		Boolean success = ArticulosBusinessDelegate.getInstance().recepcionArticulosParaDespachar(solicitudArticulo);
 		return Response.status(success ? 201 : 500).build();
 	}
 }

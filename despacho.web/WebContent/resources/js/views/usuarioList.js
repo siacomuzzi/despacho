@@ -71,7 +71,7 @@ window.UsuarioListView = Backbone.View.extend({
             return false;
         }
         
-        user.url = function() { return 'api/usuarios'; };
+        user.url = function() { return window.baseUrl + "api/usuarios"; };
         user.isNew = function() { return true; };
 
         user.save(null, {

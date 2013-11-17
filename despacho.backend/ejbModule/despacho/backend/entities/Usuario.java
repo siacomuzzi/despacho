@@ -1,10 +1,14 @@
 package despacho.backend.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "USUARIO")
-public class Usuario {
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String username;
 	private String nombre;
 	private String apellido;

@@ -13,4 +13,8 @@ public interface AdministradorUsuarios {
 	List<Usuario> listar();
 	
 	void actualizar(Usuario usuario);
+	
+	Usuario get(String username);
+	
+	void eliminar(String username);
 }

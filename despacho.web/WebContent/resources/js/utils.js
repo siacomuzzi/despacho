@@ -42,7 +42,7 @@ window.utils = {
     showAlert: function(title, text, klass) {
         $('.alert').removeClass("alert-error alert-warning alert-success alert-info");
         $('.alert').addClass(klass);
-        $('.alert').html('<strong>' + title + '</strong> ' + text);
+        $('.alert').html('<button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + title + '</strong> ' + text);
         $('.alert').show();
     },
 

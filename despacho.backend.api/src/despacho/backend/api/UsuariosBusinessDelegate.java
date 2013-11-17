@@ -1,29 +1,29 @@
 package despacho.backend.api;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import ar.edu.uade.integracion.VO.ArticuloVO;
-import ar.edu.uade.integracion.VO.SolicitudArticuloVO;
-import despacho.backend.servicios.ServicioArticulos;
+import despacho.backend.administradores.AdministradorUsuarios;
+import despacho.backend.entities.Usuario;
 
-public class BusinessDelegate implements ServicioArticulos {
-
-	static BusinessDelegate instancia = null;
-	ServicioArticulos servicioArticulos;
+public class UsuariosBusinessDelegate implements AdministradorUsuarios {
 	
-	public static BusinessDelegate getInstance() throws NamingException {
+	static UsuariosBusinessDelegate instancia = null;
+	AdministradorUsuarios administradorUsuarios;
+	
+	public static UsuariosBusinessDelegate getInstance() throws NamingException {
 		if (instancia == null) {
-			instancia= new BusinessDelegate();
+			instancia= new UsuariosBusinessDelegate();
 		}
 		
 		return instancia;
 	}
 	
-	private BusinessDelegate() throws NamingException {
+	private UsuariosBusinessDelegate() throws NamingException {
 
 		try {
 			final Hashtable<String, String> jndiProperties = new Hashtable<String, String>();
@@ -39,30 +39,44 @@ public class BusinessDelegate implements ServicioArticulos {
 			final String earAppName = "despacho.backendEAR";
 			final String ejbModuleName = "despacho.backend";
 			final String distinctName = "";
-			final String beanName = "ServicioArticulosBean";
-			final String viewClassName = ServicioArticulos.class.getName();
+			final String beanName = "AdministradorUsuariosBean";
+			final String viewClassName = AdministradorUsuarios.class.getName();
 			String url = 
 					"ejb:" + earAppName + "/" + ejbModuleName + "/" + distinctName + "/" + beanName + "!" + viewClassName;
 
 			System.out.println("Looking EJB via JNDI");
 			System.out.println(url);
 
-			servicioArticulos = (ServicioArticulos) context.lookup(url);
+			administradorUsuarios = (AdministradorUsuarios) context.lookup(url);
 
 		} catch (Exception e) {
 			e.getCause();
-			System.out.println("Entro en exception");
 		}
 	}
-	
+
 	@Override
-	public void ingresarArticulo(ArticuloVO articulo) {
-		servicioArticulos.ingresarArticulo(articulo);
+	public void agregar(Usuario usuario) {
+		this.administradorUsuarios.agregar(usuario);
 	}
 
 	@Override
-	public Boolean recepcionArticulosParaDespachar(SolicitudArticuloVO solicitudArticulo) {
-		return servicioArticulos.recepcionArticulosParaDespachar(solicitudArticulo);
+	public List<Usuario> listar() {
+		return this.administradorUsuarios.listar();
 	}
 
+	@Override
+	public void actualizar(Usuario usuario) {
+		this.administradorUsuarios.actualizar(usuario);
+	}
+
+	@Override
+	public Usuario get(String username) {
+		return this.administradorUsuarios.get(username);
+	}
+
+	@Override
+	public void eliminar(String username) {
+		this.administradorUsuarios.eliminar(username);
+	}
 }
+
