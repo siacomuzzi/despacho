@@ -18,9 +18,9 @@ public class Logger {
 	}
 	
 	private static void logMessage(String evento, String message, Boolean error) {
-		System.out.println(message);
-		
 		try {
+			System.out.println(message);
+			
 			String logCodigoModulo = Configuracion.getInstancia().get().get("CodigoModuloParaLog");
 			String modulo = Configuracion.getInstancia().get().get("NombreDespacho");
 			String logAsincrono = Configuracion.getInstancia().get().get("logAsincrono");
@@ -55,7 +55,7 @@ public class Logger {
 				MensajeSincronicoWS.loguearEvento(mensajeLog);
 			}
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			// e.printStackTrace();
 			System.out.println("[ERROR] Ocurrio un error al intentar loguear: " + e.getMessage());
 		}

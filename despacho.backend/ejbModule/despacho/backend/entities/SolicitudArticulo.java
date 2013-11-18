@@ -1,5 +1,6 @@
 package despacho.backend.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,7 +10,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SOLICITUD_ARTICULO")
-public class SolicitudArticulo {
+public class SolicitudArticulo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private Date fecha;

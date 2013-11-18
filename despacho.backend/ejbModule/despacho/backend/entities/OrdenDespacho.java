@@ -1,12 +1,14 @@
 package despacho.backend.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ORDEN_DESPACHO")
-public class OrdenDespacho {
+public class OrdenDespacho implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private int codOrden;
 	private String nombreUsuario;

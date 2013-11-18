@@ -111,7 +111,7 @@ public class ServicioArticulosBean implements ServicioArticulos {
 					
 					for (SolicitudArticulo solicitudArticuloOrden : ordenPendiente.getArticulos()) {
 						
-						if (solicitudArticuloOrden.getEstado() != EstadoSolicitudArticulo.LISTA) {
+						if (!solicitudArticuloOrden.getEstado().equalsIgnoreCase(EstadoSolicitudArticulo.LISTA)) {
 							
 							ordenListaParaEntrega = false;
 							break;

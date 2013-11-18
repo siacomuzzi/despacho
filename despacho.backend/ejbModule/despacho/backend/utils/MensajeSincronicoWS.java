@@ -16,6 +16,7 @@ public class MensajeSincronicoWS {
 		
 		try {
 			ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort(new URL(url));
+			//ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort();
 			port.cambioEstadoEntrega(orden.getCodVenta(), orden.getEstado());
 		} catch (Exception e) {
 			e.printStackTrace();

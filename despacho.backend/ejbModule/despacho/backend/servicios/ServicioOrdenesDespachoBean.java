@@ -135,7 +135,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 				try {
 					MensajeSincronicoWS.informarOrdenListaEntrega(orden, nombrePortal);
 				}
-				catch (Exception ex) {
+				catch (Throwable ex) {
 					Logger.error("DCH04", ex.getMessage());
 				}
 			}
@@ -154,7 +154,7 @@ public class ServicioOrdenesDespachoBean implements ServicioOrdenesDespacho {
 						Configuracion.getInstancia().get().get("Auditoria-OrdenDespachoListaRest-Url"), 
 						estadoDespacho);
 			}
-			catch (Exception ex) {
+			catch (Throwable ex) {
 				Logger.error("DCH04", ex.getMessage());
 			}
 			

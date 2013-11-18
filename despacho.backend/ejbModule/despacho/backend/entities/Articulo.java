@@ -1,5 +1,6 @@
 package despacho.backend.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ARTICULO")
-public class Articulo {
+public class Articulo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String idArticulo;
 	private String nombre;
@@ -102,7 +104,7 @@ public class Articulo {
 		this.stock = stock;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "articulo")
 	public List<ArticuloAtributo> getAtributos() {
 		return atributos;

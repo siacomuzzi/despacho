@@ -32,21 +32,22 @@ public class Configuracion {
 		configuracion.put("DepositoC-SolicitarArticuloQueue-Password", "test1234");
 		
 		// Configuracion de Portales
-		configuracion.put("Portales", "PortalA;PortalB;PortalC");
-		configuracion.put("PortalA-OrdenDespachoListaWS-Url", "http://192.168.1.112/Portal/ObtenerEstado");
+		configuracion.put("Portales", "PortalC;PortalA");
+		configuracion.put("PortalA-OrdenDespachoListaWS-Url", "http://192.168.1.112:8080/PortalWebBusinessLogic/PortalWeb");
 		configuracion.put("PortalB-OrdenDespachoListaWS-Url", "http://192.168.Y.YYY/Portal/ObtenerEstado");
-		configuracion.put("PortalC-OrdenDespachoListaWS-Url", "http://192.168.1.108/Portal/ObtenerEstado");
+		configuracion.put("PortalC-OrdenDespachoListaWS-Url", "http://192.168.1.105:8080/Portal/ObtenerEstado");
 		
 		// Configuracion de Despacho
 		configuracion.put("NombreDespacho", "DespachoA");
 		configuracion.put("CodigoModuloParaLog", "12");
 		
-		// Configuracion de Auditoria
-		configuracion.put("logAsincrono", "");
-		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionAplicaciones");
+		// Configuracion de Auditoria (A: 124 | C: 146)
+		configuracion.put("logAsincrono", "true");
+		//configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.146:8080/IntegracionWeb/rest/json/estadodespacho"); // C
+		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionWEB/rest/json/estadodespacho"); // 
 		configuracion.put("Auditoria-LoguearEventoWS-Url", "http://192.168.1.124:8080/IntegracionAplicaciones/AdminAuditoriaBean");
 		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
-		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "recibirInformeAuditoria");
+		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "RecibirInformesAuditoria");
 		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "test");
 		configuracion.put("Auditoria-LoguearEventoQueue-Password", "test123");
 	}
