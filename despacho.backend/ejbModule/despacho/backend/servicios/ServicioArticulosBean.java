@@ -99,12 +99,12 @@ public class ServicioArticulosBean implements ServicioArticulos {
 								
 								solicitudArticuloOrden.setEstado(EstadoSolicitudArticulo.LISTA);
 								cantidad = cantidad - solicitudArticuloOrden.getCantidad();
-								
-								// Actualizo la orden
-								this.administradorOrdenesDespacho.actualizar(ordenPendiente);
 							}
 						}
 					}
+					
+					// Actualizo la orden
+					this.administradorOrdenesDespacho.actualizar(ordenPendiente);
 					
 					// Si todos los articulos de la orden estan listos para entrega, se llama a DCH04
 					Boolean ordenListaParaEntrega = true;
@@ -127,7 +127,7 @@ public class ServicioArticulosBean implements ServicioArticulos {
 			Logger.info("DCH03", "Listo (DCH03 - Recepción y Procesamiento de Artículos a Despachar)");
 			return true;
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			Logger.error("DCH03", e.getMessage());
 			return false;

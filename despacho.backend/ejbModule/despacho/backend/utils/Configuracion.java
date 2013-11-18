@@ -42,10 +42,10 @@ public class Configuracion {
 		
 		// Configuracion de Auditoria (A: 124 | C: 146)
 		configuracion.put("logAsincrono", "true");
-		//configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.146:8080/IntegracionWeb/rest/json/estadodespacho"); // C
-		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionWEB/rest/json/estadodespacho"); // 
-		configuracion.put("Auditoria-LoguearEventoWS-Url", "http://192.168.1.124:8080/IntegracionAplicaciones/AdminAuditoriaBean");
-		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaA");
+		configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.146:8080/IntegracionWeb/rest/json/estadodespacho"); // C
+		//configuracion.put("Auditoria-OrdenDespachoListaRest-Url", "http://192.168.1.124:8080/IntegracionWEB/rest/json/estadodespacho"); // 
+		configuracion.put("Auditoria-LoguearEventoWS-Url", "http://192.168.1.146:8080/IntegracionAplicaciones/AdminAuditoriaBean");
+		configuracion.put("Auditoria-LoguearEventoQueue-Url", "ConnectionFactoryAuditoriaC");
 		configuracion.put("Auditoria-LoguearEventoQueue-Nombre", "RecibirInformesAuditoria");
 		configuracion.put("Auditoria-LoguearEventoQueue-Usuario", "test");
 		configuracion.put("Auditoria-LoguearEventoQueue-Password", "test123");
