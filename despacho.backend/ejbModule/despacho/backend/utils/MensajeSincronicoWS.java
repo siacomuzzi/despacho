@@ -1,5 +1,8 @@
 package despacho.backend.utils;
 
+import iaPortalWeb.PortalWeb;
+import iaPortalWeb.PortalWebServiceLocator;
+
 import java.net.URL;
 
 import sessionBeans.AdminAuditoriaBean;
@@ -15,9 +18,15 @@ public class MensajeSincronicoWS {
 		String url = Configuracion.getInstancia().get().get(nombrePortal + "-OrdenDespachoListaWS-Url");
 		
 		try {
-			ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort(new URL(url));
-			//ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort();
-			port.cambioEstadoEntrega(orden.getCodVenta(), orden.getEstado());
+			if (nombrePortal.equalsIgnoreCase("PortalC")) {
+				ObtenerEstado port = new ObtenerEstadoServiceLocator().getObtenerEstadoPort(new URL(url));
+				port.cambioEstadoEntrega(orden.getCodVenta(), orden.getEstado());
+			}
+			else if (nombrePortal.equalsIgnoreCase("PortalA")) {
+				PortalWeb port = new PortalWebServiceLocator().getPortalWebPort(new URL(url));
+				port.cambioEstadoEntrega(orden.getCodVenta(), orden.getEstado());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
