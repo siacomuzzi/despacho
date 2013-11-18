@@ -32,9 +32,8 @@ public class Configuracion {
 		configuracion.put("DepositoC-SolicitarArticuloQueue-Password", "test1234");
 		
 		// Configuracion de Portales
-		configuracion.put("Portales", "PortalC;PortalA");
+		configuracion.put("Portales", "PortalA;PortalC");
 		configuracion.put("PortalA-OrdenDespachoListaWS-Url", "http://192.168.1.112:8080/PortalWebBusinessLogic/PortalWeb");
-		configuracion.put("PortalB-OrdenDespachoListaWS-Url", "http://192.168.Y.YYY/Portal/ObtenerEstado");
 		configuracion.put("PortalC-OrdenDespachoListaWS-Url", "http://192.168.1.105:8080/Portal/ObtenerEstado");
 		
 		// Configuracion de Despacho
